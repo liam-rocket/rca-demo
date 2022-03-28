@@ -1,0 +1,10 @@
+<html>
+  <head> </head>
+  <body>
+    <h1>THIS IS EJS PARTIALS LOOOOOOOOOOL</h1>
+    <ul>
+      <% users.forEach(function(user){ %> <%- include('user/show', {user:
+      user}); %> <% }); %>
+    </ul>
+  </body>
+</html>

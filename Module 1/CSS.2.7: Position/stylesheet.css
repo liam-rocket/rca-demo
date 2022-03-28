@@ -1,0 +1,84 @@
+/* relative */
+.parent {
+  border: 2px solid #0074d9;
+  color: #0074d9;
+  padding: 20px;
+}
+
+.element {
+  border: 1px dotted #000;
+  background-color: #eee;
+  padding: 20px;
+  color: #000;
+  margin-top: 10px;
+  position: relative;
+  top: 50px;
+  left: 50px;
+}
+
+/* fixed */
+/* .parent {
+  color: white;
+  padding: 70px;
+  position: relative;
+  background-color: #0074d9;
+  margin-top: 50px;
+}
+
+.element {
+  background-color: red;
+  opacity: 0.85;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
+/* absolute */
+/* .parent {
+  border: 2px solid #0074d9;
+  color: #0074d9;
+  padding: 20px;
+}
+
+.element {
+  border: 1px dotted #000;
+  background-color: #eee;
+  padding: 20px;
+  color: #000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.element2 {
+  border: 1px dotted #000;
+  background-color: #eee;
+  padding: 20px;
+  color: red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* float */
+
+/* img {
+  float: left;
+  margin: 30px;
+} */

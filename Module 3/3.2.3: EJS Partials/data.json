@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "name": "liam",
+      "email": "liam@rocketacademy.co",
+      "role": "section leader"
+    },
+    {
+      "name": "joe",
+      "email": "joe@rocketacademy.co",
+      "role": "section leader"
+    }
+  ]
+}

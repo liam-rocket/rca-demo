@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  width: 100%;
+  background-color: #ffee00;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  border: 2px solid #000;
+  background-color: #dfdfdf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#box1 {
+  flex-shrink: 0;
+}
+
+#box2 {
+}
+
+#box3 {
+}
