@@ -8,6 +8,22 @@ import pool from './initPool.js';
 const multerUpload = multer({ dest: 'uploads/' });
 const singleFileUpload = multerUpload.single('photo');
 
+// * Save file with original filename ie. hello.jpg
+// const storage = multer.diskStorage({
+//   destination: (req, file, callback) => {
+//     callback(null, 'uploads/');
+//   },
+//   filename: (req, file, callback) => {
+//     callback(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({ storage });
+// const singleFileUpload = upload.single('photo');
+
+// * Multiple file uploads
+// const multipleFileUpload = multerUpload.array('photos', 5);
+
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('uploads'));
