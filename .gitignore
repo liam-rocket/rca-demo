@@ -1,3 +1,5 @@
 *.index.js
 
 node_modules/
+
+**/uploads/*
