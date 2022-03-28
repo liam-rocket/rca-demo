@@ -6,18 +6,7 @@ import pool from './initPool.js';
 // todo: set the name of the upload directory here
 
 const multerUpload = multer({ dest: 'uploads/' });
-// const storage = multer.diskStorage({
-//   destination: (req, file, callback) => {
-//     callback(null, 'uploads/');
-//   },
-//   filename: (req, file, callback) => {
-//     callback(null, file.originalname);
-//   },
-// });
 const singleFileUpload = multerUpload.single('photo');
-// const upload = multer({ storage });
-// const singleFileUpload = upload.single('photo');
-// const multipleFileUpload = multerUpload.array('photos', 5);
 
 const app = express();
 app.set('view engine', 'ejs');
