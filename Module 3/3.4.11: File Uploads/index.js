@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import multer from 'multer';
 
@@ -22,7 +23,7 @@ const singleFileUpload = multerUpload.single('photo');
 // const singleFileUpload = upload.single('photo');
 
 // * Multiple file uploads
-// const multipleFileUpload = multerUpload.array('photos', 5);
+const multipleFileUpload = multerUpload.array('photos', 5);
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -35,12 +36,11 @@ app.get('/recipe', (request, response) => {
 // todo: add multer middleware
 app.post('/recipe', singleFileUpload, (request, response) => {
   console.log(request.file);
-  //   response.send('worked');
 
   const sqlQuery =
     'INSERT INTO recipes (label, photo) VALUES ($1, $2) RETURNING *';
   // get the photo column value from request.file
-  const values = [request.body.label, request.file.filename];
+  const values = [request.body.label, request.file.originalname];
 
   // Query using pg.Pool instead of pg.Client
   pool.query(sqlQuery, values, (error, result) => {
@@ -53,6 +53,30 @@ app.post('/recipe', singleFileUpload, (request, response) => {
   });
 });
 
+// todo: add multer middleware
+app.post('/recipe/multiple', multipleFileUpload, (request, response) => {
+  console.log(request.files);
+
+  const { files } = request;
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const file of files) {
+    const sqlQuery =
+      'INSERT INTO recipes (label, photo) VALUES ($1, $2) RETURNING *';
+    // get the photo column value from request.file
+    const values = [file.label, file.filename];
+
+    // Query using pg.Pool instead of pg.Client
+    pool.query(sqlQuery, values, (error) => {
+      if (error) {
+        console.log('Error executing query', error.stack);
+        response.status(503).send('Something went wrong');
+      }
+    });
+  }
+  response.send(`Uploaded ${files.length} files`);
+});
+
 app.get('/recipe/:id', (request, response) => {
   const sqlQuery = 'SELECT * FROM recipes WHERE id=$1;';
   const values = [request.params.id];
@@ -60,7 +84,8 @@ app.get('/recipe/:id', (request, response) => {
   // Query using pg.Pool instead of pg.Client
   pool.query(sqlQuery, values, (error, result) => {
     if (error) {
-      console.log('Error executing query', error.stack);
+      console.log(error);
+      // console.log('Error executing query', error.stack);
       response.status(503).send(error.message);
       return;
     }
