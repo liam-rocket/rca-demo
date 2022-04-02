@@ -1,8 +1,18 @@
 /* eslint-disable import/extensions */
+import axios from 'axios';
 import express from 'express';
 import multer from 'multer';
-
+import path from 'path';
+import dotenv from 'dotenv';
 import pool from './initPool.js';
+
+const envFilePath = '.env';
+dotenv.config({ path: path.normalize(envFilePath) });
+
+const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+const secretKey = process.env.UNSPLASH_SECRET_KEY;
+
+const apiUrl = 'https://api.unsplash.com';
 
 // todo: set the name of the upload directory here
 
@@ -77,23 +87,36 @@ app.post('/recipe/multiple', multipleFileUpload, (request, response) => {
   response.send(`Uploaded ${files.length} files`);
 });
 
-app.get('/recipe/:id', (request, response) => {
-  const sqlQuery = 'SELECT * FROM recipes WHERE id=$1;';
-  const values = [request.params.id];
-
-  // Query using pg.Pool instead of pg.Client
-  pool.query(sqlQuery, values, (error, result) => {
-    if (error) {
-      console.log(error);
-      // console.log('Error executing query', error.stack);
-      response.status(503).send(error.message);
-      return;
-    }
-    const data = {
-      recipe: result.rows[0],
-    };
-    response.render('recipe', data);
+app.get('/recipe/:id', async (request, response) => {
+  const image = await axios.get(`${apiUrl}/photos/random`, {
+    headers: {
+      Authorization: `Client-ID ${accessKey}`,
+    },
   });
+
+  const regularImageUrl = image.data.urls.regular;
+  const data = {
+    recipe: {
+      photo: regularImageUrl,
+    },
+  };
+  response.render('recipe', data);
+
+  // const sqlQuery = 'SELECT * FROM recipes WHERE id=$1;';
+  // const values = [request.params.id];
+  // // Query using pg.Pool instead of pg.Client
+  // pool.query(sqlQuery, values, (error, result) => {
+  //   if (error) {
+  //     console.log(error);
+  //     // console.log('Error executing query', error.stack);
+  //     response.status(503).send(error.message);
+  //     return;
+  //   }
+  //   const data = {
+  //     recipe: result.rows[0],
+  //   };
+  //   response.render('recipe', data);
+  // });
 });
 
 app.listen(3004);
