@@ -14,8 +14,8 @@ class Car {
   }
 }
 
-const redFerrari = new Car("liam", "red", 2);
-const blueToyota = new Car("aqif", "blue", 4);
+const redFerrari = new Car('liam', 'red', 2);
+const blueLambo = new Car('aqif', 'blue', 2);
 
-blueToyota.drive();
-blueToyota.park("marina bay sands");
+blueLambo.drive();
+blueLambo.park('marina bay sands');

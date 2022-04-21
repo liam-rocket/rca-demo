@@ -11,7 +11,7 @@ const accessKey = process.env.UNSPLASH_ACCESS_KEY;
 const apiUrl = 'https://api.unsplash.com';
 
 const getARandomPhoto = async () => {
-  const response = await axios.get(`${apiUrl}/photos/random`, {
+  const response = await axios.post(`${apiUrl}/photos/random`, {
     headers: {
       Authorization: `Client-ID ${accessKey}`,
     },

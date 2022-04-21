@@ -1,12 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
 
 // computer call this function and move on, because it is asynchronous
-axios.get("http://dog.ceo/api/breeds/image/random").then((response) => {
-  console.log("expect this to come first");
+axios.get('http://dog.ceo/api/breeds/image/random').then((response) => {
+  console.log('expect this to come first');
   console.log(response.data.message);
 });
 
-console.log("expect this to come second");
+console.log('expect this to come second');
+
+// * POST
+
+axios
+  .post('http://dog.ceo/api/breeds/image/random', { name: 'liam' })
+  .then((response) => {
+    console.log('expect this to come first');
+    console.log(response.data.message);
+  });
 
 // todo: await
 // // computer you call this function and move on, because it is asynchronous
