@@ -1,3 +1,4 @@
+/* eslint-disable */
 import db from './db/models/index.model.js';
 
 db.Category.findOne({

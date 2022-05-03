@@ -3,18 +3,18 @@ module.exports = {
     const categoriesList = [
       {
         name: 'fish',
-        created_at: new Date(),
-        updated_at: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: 'fruit',
-        created_at: new Date(),
-        updated_at: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: 'meat',
-        created_at: new Date(),
-        updated_at: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ];
 
@@ -31,23 +31,23 @@ module.exports = {
 
       items.push({
         name: 'some item',
-        category_id: category.id,
-        created_at: new Date(),
-        updated_at: new Date(),
+        categoryId: category.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
 
       items.push({
         name: 'other item',
-        category_id: category.id,
-        created_at: new Date(),
-        updated_at: new Date(),
+        categoryId: category.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
 
       items.push({
         name: 'iitemmm',
-        category_id: category.id,
-        created_at: new Date(),
-        updated_at: new Date(),
+        categoryId: category.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
     }
 

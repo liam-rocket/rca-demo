@@ -12,11 +12,11 @@ module.exports = {
         type: Sequelize.STRING,
       },
       // created_at and updated_at are required
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
@@ -32,7 +32,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      category_id: {
+      categoryId: {
         type: Sequelize.INTEGER,
         // This links the category_id column to the id column in the categories table
         references: {
@@ -40,11 +40,11 @@ module.exports = {
           key: 'id',
         },
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },

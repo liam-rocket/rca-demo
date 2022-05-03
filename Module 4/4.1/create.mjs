@@ -12,5 +12,8 @@ db.Item.create({
   .then((item) => {
     console.log('success!');
     console.log(item);
+    console.log(item.name);
+
+    item.update({ name: 'Aqif' });
   })
   .catch((error) => console.log(error));
