@@ -8,14 +8,26 @@ axios.get('http://dog.ceo/api/breeds/image/random').then((response) => {
 
 console.log('expect this to come second');
 
+// todo: using await
+
+const getDogImage = async () => {
+  const response = axios.get('http://dog.ceo/api/breeds/image/random');
+  console.log('expect this to come first');
+  console.log(response.data.message);
+};
+
+await getDogImage();
+
+console.log('expect this to come second');
+
 // * POST
 
-axios
-  .post('http://dog.ceo/api/breeds/image/random', { name: 'liam' })
-  .then((response) => {
-    console.log('expect this to come first');
-    console.log(response.data.message);
-  });
+// axios
+//   .post('http://dog.ceo/api/breeds/image/random', { name: 'liam' })
+//   .then((response) => {
+//     console.log('expect this to come first');
+//     console.log(response.data.message);
+//   });
 
 // todo: await
 // // computer you call this function and move on, because it is asynchronous

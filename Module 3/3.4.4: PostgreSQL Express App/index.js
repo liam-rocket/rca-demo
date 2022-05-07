@@ -1,21 +1,21 @@
-import express from "express";
-import pg from "pg";
-import axios from "axios";
+import express from 'express';
+import pg from 'pg';
+import axios from 'axios';
 
 // Initialise DB connection
 const { Pool } = pg;
 const pgConnectionConfigs = {
-  user: "yickkiuliamleung",
-  host: "localhost",
-  database: "postgres",
+  user: 'yickkiuliamleung',
+  host: 'localhost',
+  database: 'postgres',
   port: 5432, // Postgres server always runs on this port by default
 };
 const pool = new Pool(pgConnectionConfigs);
 
 const app = express();
 
-app.get("/", (request, response) => {
-  console.log("request came in");
+app.get('/', (request, response) => {
+  console.log('request came in');
 
   // pool.query("SELECT * from cats", (error, result) => {
   //   if (error) {
@@ -27,7 +27,7 @@ app.get("/", (request, response) => {
   // });
 
   setTimeout(() => {
-    response.send("I am fulfiling my promise");
+    response.send('I am fulfiling my promise');
   }, 1000);
 
   // axios.get("http://dog.ceo/api/breeds/image/random").then((response) => {
@@ -38,8 +38,8 @@ app.get("/", (request, response) => {
   // });
 });
 
-app.get("/liam", (request, response) => {
-  console.log("request came in");
+app.get('/liam', (request, response) => {
+  console.log('request came in');
 });
 
 app.listen(3004);
