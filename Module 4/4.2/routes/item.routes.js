@@ -8,7 +8,7 @@ const router = Router();
 
 const itemController = new ItemController(db);
 
-router.get('/items', itemController.getItemForm);
+router.get('/items/create', itemController.getItemForm);
 router.post('/items/create', itemController.createItem);
 
 export default router;
