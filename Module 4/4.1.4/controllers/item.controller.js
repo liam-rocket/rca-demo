@@ -4,7 +4,7 @@ class ItemController {
     this.db = db;
   }
 
-  getItemsCategories = async (request, response) => {
+  getItemsCategories = async (request, response, next) => {
     try {
       const { itemName } = request.params;
 
@@ -12,13 +12,26 @@ class ItemController {
         where: {
           name: [itemName],
         },
+        include: [{ model: this.db.Category }],
       });
+
+      // const gonnaThrowAnError = await this.db.Item.create({
+      //   id: 'hahahhaha',
+      // });
+
+      if (!item) {
+        throw new Error('item does not exist');
+      }
 
       const itemCategories = await item.getCategories();
       response.json(itemCategories);
     } catch (err) {
       console.error(err);
-      throw new Error(err);
+      next({
+        code: 30001,
+        param: 'Something went wrong...',
+        message: err.message, // ie. item does not exist
+      });
     }
   };
 }

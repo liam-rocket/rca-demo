@@ -1,24 +1,26 @@
 import axios from 'axios';
 
 // computer call this function and move on, because it is asynchronous
-axios.get('http://dog.ceo/api/breeds/image/random').then((response) => {
-  console.log('expect this to come first');
-  console.log(response.data.message);
-});
+// axios.get('http://dog.ceo/api/breeds/image/random').then((response) => {
+//   console.log('expect this to come first');
+//   console.log(response.data.message);
+// });
 
-console.log('expect this to come second');
+// console.log('expect this to come second');
 
 // todo: using await
 
 const getDogImage = async () => {
-  const response = axios.get('http://dog.ceo/api/breeds/image/random');
-  console.log('expect this to come first');
-  console.log(response.data.message);
+  try {
+    const response = await axios.get('http://localhost:3004/items/banana');
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 await getDogImage();
 
-console.log('expect this to come second');
+// console.log('expect this to come second');
 
 // * POST
 

@@ -50,7 +50,7 @@ class ItemController {
     }
   };
 
-  getCategorysItems = async (request, response) => {
+  getCategoryItems = async (request, response) => {
     try {
       const { categoryName } = request.params;
 
@@ -58,10 +58,23 @@ class ItemController {
         where: {
           name: categoryName,
         },
+        include: [
+          {
+            model: this.db.Item,
+            where: {
+              name: 'blueberry',
+            },
+          },
+        ], // todo: <-- return category item object
       });
 
-      const categoryItems = await category.getItems();
-      response.json(categoryItems);
+      // const listOfItems = category.items.map((item) => item.name);
+      // response.json(listOfItems);
+
+      response.json(category);
+
+      // const categoryItems = await category.getItems();
+      // response.json(categoryItems);
     } catch (err) {
       console.error(err);
       throw new Error(err);
