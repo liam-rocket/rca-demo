@@ -13,5 +13,10 @@ const prefix = '/carts';
 const cartController = new CartController(db);
 
 router.get(`${prefix}`, randomMiddleware, cartController.getModels);
+router.get(
+  `${prefix}/quantity/:cartId`,
+  randomMiddleware,
+  cartController.getQuantity
+);
 
 export default router;

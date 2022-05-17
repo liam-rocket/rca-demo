@@ -25,8 +25,8 @@ db.Cart = initCartModel(sequelize, Sequelize.DataTypes);
 db.CartItem = initCartItemModel(sequelize, Sequelize.DataTypes);
 
 // in order for the many-to-many to work we must mention the join table here.
-db.Item.belongsToMany(db.Category, { through: 'category_items' });
-db.Category.belongsToMany(db.Item, { through: 'category_items' });
+db.Item.belongsToMany(db.Category, { through: 'categoryItems' });
+db.Category.belongsToMany(db.Item, { through: 'categoryItems' });
 
 // Connect Item and Cart models.
 // Note: It's possible to use a Sequelize model class (i.e. CartItem)
