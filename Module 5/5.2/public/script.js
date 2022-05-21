@@ -1,3 +1,7 @@
+function insertAfter(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 const makeRequest = async () => {
   // Make a request for all the items
   axios

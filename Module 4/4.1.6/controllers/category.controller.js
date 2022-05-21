@@ -22,6 +22,8 @@ class CategoryController {
       });
       response.json(associatedItem);
     } catch (error) {
+      console.log(error);
+      next(error);
       // if (error instanceof DatabaseError) {
       //   console.error('This is a database error!');
       //   console.error(error);
@@ -34,9 +36,7 @@ class CategoryController {
       // }
       // console.error(error);
       // --
-      response.status(500).json({
-        message: error.message,
-      });
+
       // --
       // next(error);
     }
