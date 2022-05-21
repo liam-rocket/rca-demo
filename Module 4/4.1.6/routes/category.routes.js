@@ -12,10 +12,15 @@ const prefix = '/category';
 
 const categoryController = new CategoryController(db);
 
-router.get(
+router.post(
   `${prefix}`,
   randomMiddleware,
   categoryController.violateDbConstraint
+);
+router.post(
+  `${prefix}/create`,
+  randomMiddleware,
+  categoryController.createCategory
 );
 
 export default router;

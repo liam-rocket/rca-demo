@@ -12,12 +12,12 @@ export default function initItemModel(sequelize, DataTypes) {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          // isAlpha allows only alphanumeric characters.
-          isAlpha: true,
-          // This only allows strings of length 3 to 23.
-          len: [3, 23],
-        },
+        // validate: {
+        //   // isAlpha allows only alphanumeric characters.
+        //   isAlpha: true,
+        //   // This only allows strings of length 3 to 23.
+        //   len: [3, 23],
+        // },
       },
       categoryId: {
         type: DataTypes.INTEGER,

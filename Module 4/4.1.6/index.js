@@ -3,6 +3,8 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 
+import errorMiddleware from './middlewares/error.middleware.js';
+
 import CategoryRouter from './routes/category.routes.js';
 
 const envFilePath = '.env';
@@ -14,6 +16,9 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(errorMiddleware);
+
 app.set('view engine', 'ejs');
 
 const routers = [CategoryRouter];
