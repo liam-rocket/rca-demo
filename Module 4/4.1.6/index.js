@@ -17,12 +17,14 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(errorMiddleware);
-
 app.set('view engine', 'ejs');
 
 const routers = [CategoryRouter];
 routers.forEach((router) => app.use('/', router));
+
+// have to put these after the routes have been initialized
+app.use(errorMiddleware);
+app.set('trust proxy', true);
 
 app.listen(PORT);
 console.log(`🚀 App listening on the port ${PORT}`);

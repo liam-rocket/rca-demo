@@ -22,5 +22,10 @@ router.post(
   randomMiddleware,
   categoryController.createCategory
 );
+router.get(
+  `${prefix}/error`,
+  randomMiddleware,
+  categoryController.justGonnaThrowSomeError
+);
 
 export default router;
