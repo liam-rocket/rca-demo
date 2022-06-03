@@ -3,7 +3,7 @@
 /**
  * * Space Complexity -> how does your algorithm grow in memory usage as the input size scales ?
  *
- * Below is the same for loop taht we starte with
+ * Below is the same for loop taht we started with
  *
  * The space complexity is essentially 0
  *
@@ -21,7 +21,7 @@
  */
 
 // * O(1)
-const data = ['A', 'B', 'C'];
+const data = ['A', 'B', 'C', 'D', 'F'];
 for (let i = 0; i < data.length; i += 1) {
   console.log(data[i]);
 }

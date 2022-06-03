@@ -8,7 +8,7 @@
  * 1. We have n, which we are going to use for our data 1
  * 2. We will need to come up with some other variable for data 2
  *
- * We can say b ? It doesn't matter
+ * We can say a ? It doesn't matter
  *
  * In our case, we will have N to represent data, and A to represent data 2
  *
@@ -19,8 +19,8 @@
  * This is because we are scaling off of both of N and A since we loop through data 1 and then data 2
  */
 
-const data1 = ['A', 'B', 'C'];
-const data2 = [1, 2, 3, 4, 5];
+const data1 = ['A', 'B', 'C']; // <- n
+const data2 = [1, 2, 3, 4, 5]; // < -a
 
 for (let i = 0; i < data1.length; i += 1) {
   console.log(data1[i]);

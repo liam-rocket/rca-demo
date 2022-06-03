@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
-const data1 = ['A', 'B', 'C'];
-const data2 = [1, 2, 3, 4, 5];
+const data1 = ['A', 'B', 'C']; // <- n = 3
+const data2 = [1, 2, 3, 4, 5]; // <- a =
 
 /**
- * O(n + a)
+ * O(n * a)
  *
  * Now we have our loops inside of each other
  *

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const data1 = ['A', 'B', 'C'];
+const data1 = ['A', 'B', 'C']; // <- n
 
 /**
  * O(n ^ 2)
