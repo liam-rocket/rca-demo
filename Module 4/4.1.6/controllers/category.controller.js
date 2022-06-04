@@ -46,7 +46,21 @@ class CategoryController {
       const newCategory = await this.db.Category.create({
         name: categoryName,
       });
-      response.send(newCategory);
+
+      const [numberOfUpdatedCategory, updatedCategories] =
+        await this.db.Category.update(
+          {
+            name: 'liam',
+          },
+          {
+            where: {
+              id: 1,
+            },
+            returning: true,
+          }
+        );
+
+      response.send({ numberOfUpdatedCategory, updatedCategories });
     } catch (error) {
       next(error);
     }
