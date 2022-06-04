@@ -60,7 +60,22 @@ class CategoryController {
           }
         );
 
-      response.send({ numberOfUpdatedCategory, updatedCategories });
+      // offset = item to start with
+      // limit = amount of items returned
+
+      // 5, 22, 2, 3, 1
+
+      // pagination
+      const categories = await this.db.Category.findAndCountAll({
+        where: {
+          name: 'liam',
+        },
+        // limit: 2,
+        offset: 2,
+      });
+
+      response.send(categories);
+      // response.send({ numberOfUpdatedCategory, updatedCategories });
     } catch (error) {
       next(error);
     }
