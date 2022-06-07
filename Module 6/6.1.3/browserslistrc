@@ -1,0 +1,4 @@
+// .browserslistrc
+last 2 versions     // of each browser
+> 0.5%     // of browsers versions selected by global usage statistics
+not dead     // browsers with official support or updates in the last 24 months
