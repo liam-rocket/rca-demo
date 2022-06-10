@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 // const httpRequest = (req, res, next) => {
 //   console.log({ req });
 // };
@@ -12,3 +14,15 @@
 // const caller = handler('x ', 'y');
 
 // caller('request');
+
+// function fibonacci(num) {
+//   if (num <= 1) return 1;
+
+//   return fibonacci(num - 1) + fibonacci(num - 2);
+// }
+
+// console.log(fibonacci(6));
+
+const time = moment().add(1654662002, 'milliseconds');
+
+console.log(time.format('YYYY-MM-DD'));
