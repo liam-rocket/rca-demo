@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "node index.mjs",
-    "watch": "webpack --watch --config webpack.dev.js"
+    "watch": "webpack --watch --config webpack.dev.js",
+    "server": "nodemon ./dist/index.js"
   },
   "keywords": [],
   "author": "",

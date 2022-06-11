@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import ItemRouter from './routes/item.routes.js';
 
-const PORT = 3004;
+const PORT = 3005;
 const envFilePath = '.env';
 dotenv.config({ path: path.normalize(envFilePath) });
 

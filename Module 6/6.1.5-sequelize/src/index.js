@@ -8,6 +8,8 @@ axios
     // handle success
     console.log(response.data);
 
+    console.log('helllllllloooooo');
+
     const itemCont = document.createElement('div');
 
     response.data.forEach((item) => {

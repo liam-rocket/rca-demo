@@ -12,7 +12,8 @@
     "build": "webpack --config webpack_conf/webpack.prod.js",
     "debug": "nodemon --inspect index.mjs",
     "start": "node index.mjs",
-    "watch": "webpack --watch --config webpack_conf/webpack.dev.js"
+    "watch-webpack": "webpack --watch --config webpack_conf/webpack.dev.js",
+    "watch": "concurrently \"nodemon index.js\" \"npm run watch-webpack\""
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "@babel/preset-env": "^7.12.11",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.2",
+    "concurrently": "^7.2.1",
     "css-loader": "^5.0.1",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
@@ -39,7 +41,7 @@
     "moment": "^2.29.1",
     "nodemon": "^2.0.15",
     "npm": "^8.8.0",
-    "pg": "^8.7.3",
+    "pg": "^8.5.1",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "sequelize": "^6.19.0",
@@ -55,7 +57,6 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "pg": "^8.5.1",
     "sequelize-cli": "^6.4.1"
   }
 }
