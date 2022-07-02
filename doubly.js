@@ -9,7 +9,7 @@ class ListNode {
 class DoublyLinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
+    this.last = null;
     this.length = 0;
   }
 
@@ -17,15 +17,15 @@ class DoublyLinkedList {
     this.length++;
     let newNode = new ListNode(value);
 
-    if (this.tail) {
+    if (this.last) {
       // list is not empty
-      this.tail.next = newNode;
-      newNode.previous = this.tail;
-      this.tail = newNode;
+      this.last.next = newNode;
+      newNode.previous = this.last;
+      this.last = newNode;
       return newNode;
     }
 
-    this.head = this.tail = newNode;
+    this.head = this.last = newNode;
     return newNode;
   }
 
