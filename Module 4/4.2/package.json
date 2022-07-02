@@ -28,6 +28,7 @@
     "sequelize": "^6.19.0"
   },
   "devDependencies": {
+    "page-lifecycle": "^0.1.2",
     "sequelize-cli": "^6.4.1"
   }
 }

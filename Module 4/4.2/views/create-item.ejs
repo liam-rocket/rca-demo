@@ -8,4 +8,10 @@
       <input type="submit" value="Submit" />
     </form>
   </body>
+
+  <script>
+    window.onbeforeunload = function (e) {
+      axios.get('/');
+    };
+  </script>
 </html>

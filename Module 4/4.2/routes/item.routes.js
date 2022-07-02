@@ -8,6 +8,9 @@ const router = Router();
 
 const itemController = new ItemController(db);
 
+router.get('/', () => {
+  console.log('hiiiii');
+});
 router.get('/items/create', itemController.getItemForm);
 router.post('/items/create', itemController.createItem);
 

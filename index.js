@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 // const httpRequest = (req, res, next) => {
 //   console.log({ req });
 // };
@@ -20,13 +18,40 @@ import moment from 'moment';
 
 //   return fibonacci(num - 1) + fibonacci(num - 2);
 // }
-console.log('I AM ANDREWssssss');
-console.log('andrew');
-// console.log(fibonacci(6));
 
-const time = moment().add(1654662002, 'milliseconds');
+// import Wheel from './wheel';
 
-console.log(time.format('YYYY-MM-DD'));
+class Model {
+  constructor(number, color) {
+    this.number = number;
+    this.color = color;
+  }
 
-console.log('LIAM HERE');
-console.log('this is a test');
+  changeOwner(newDriver) {
+    console.log('the wheels are changed', newDriver);
+  }
+}
+
+class Car extends Model {
+  constructor(number, color, driver) {
+    super(number, color);
+    this.driver = driver;
+  }
+
+  drive() {
+    console.log(
+      `${this.driver} is driving a car with ${this.number} of wheels`
+    );
+    this.changeOwner('andrew');
+  }
+
+  changeOwner(newDriver) {
+    this.driver = newDriver;
+    console.log(`Driver changed to ${this.driver}`);
+  }
+}
+
+const newCar = new Car(10, 'red', 'liam');
+
+newCar.drive();
+// newCar.changeOwner('Regina');
