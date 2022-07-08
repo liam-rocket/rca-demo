@@ -10,7 +10,7 @@ import CategoryRouter from './routes/category.routes.js';
 const envFilePath = '.env';
 dotenv.config({ path: path.normalize(envFilePath) });
 
-const PORT = 3004;
+const PORT = 3005;
 
 const app = express();
 

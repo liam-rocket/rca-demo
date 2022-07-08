@@ -35,6 +35,7 @@ function errorMiddleware(error, request, response, next) {
 
   response.status(500).json({
     message: 'Something went wrong',
+    data: 'your input is incorrect',
   });
 }
 

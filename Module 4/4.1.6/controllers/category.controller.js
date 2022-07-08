@@ -15,27 +15,32 @@ class CategoryController {
 
       const category = await this.db.Category.findOne({
         where: {
-          name: categoryName,
+          name: null,
         },
       });
+
+      if (!category) {
+        throw new HttpException(500, 30003, 'Email already taken');
+      }
+
       const associatedItem = await this.db.Item.create({
         name: itemName,
         categoryId: category.id,
       });
       response.json(associatedItem);
     } catch (error) {
-      // we should refactor the below logic into a reusable function (ie. the error middleware)
-      if (error instanceof DatabaseError) {
-        console.error('This is a database error!');
-        console.error(error);
-      }
-      if (error instanceof ValidationError) {
-        console.error('This is a validation error!');
-        console.error(error);
-        console.error('The following is the first error message:');
-        console.error(error.errors[0].message);
-      }
-      console.error(error);
+      // // we should refactor the below logic into a reusable function (ie. the error middleware)
+      // if (error instanceof DatabaseError) {
+      //   console.error('This is a database error!');
+      //   console.error(error);
+      // }
+      // if (error instanceof ValidationError) {
+      //   console.error('This is a validation error!');
+      //   console.error(error);
+      //   console.error('The following is the first error message:');
+      //   console.error(error.errors[0].message);
+      // }
+      // console.error(error);
       next(error);
     }
   };
