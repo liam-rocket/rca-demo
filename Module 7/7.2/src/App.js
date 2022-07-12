@@ -17,12 +17,15 @@ const ClassDay = ({
   handleClick,
   children,
 }) => {
+  // you can massage the data in anyway you want
+  const massgedTopic = topic.toUpperCase();
+
   return (
     <div className="classDay">
       <h1>{date}</h1>
       <h4>{time === true ? 'liam is the best' : 'liam is also the best'}</h4>
       <h4>
-        Module {module}: {topic}
+        Module {module}: {massgedTopic}
       </h4>
       <br />
       <h5>
