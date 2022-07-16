@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static('dist'));
+app.use(cors());
 
 const routers = [ItemRouter];
 routers.forEach((router) => app.use('/', router));
