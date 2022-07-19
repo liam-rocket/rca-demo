@@ -39,6 +39,7 @@ function App() {
     }, 500);
   };
 
+  // this will run before the component is "mounted" aka - displayed on the screen
   useEffect(() => {
     getData();
   }, []);
