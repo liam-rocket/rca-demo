@@ -8,6 +8,7 @@ function App() {
   const [items, setItems] = useState([1]);
 
   // * Input component
+
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState(false);
 
@@ -19,6 +20,8 @@ function App() {
     }
     setName(event.target.value);
   };
+
+  // * Ajax request demo!
 
   const handleButtonClick = async () => {
     const resp = await axios.get('http://localhost:3005/getItems');
@@ -79,17 +82,21 @@ function App() {
   return (
     <div className="App">
       <div style={{ padding: 15 }}>
+        {/* Counter component */}
         <h3>Counter component</h3>
         <Counter celsiusTemp={10000} />
         <br />
+        {/* Input component */}
         <h3>Input component</h3>
         <input label="name" value={name} onChange={handleChange}></input>
         <h3>Name: {name}</h3>
         {nameError && <h5>Name must be less than 8 characters</h5>}
         <br />
+        {/* Class counter component */}
         <h3>Class counter component</h3>
         <ClassCounter />
         <br />
+        {/* Ajax request demo! */}
         <h3>Ajax request demo!</h3>
         <button onClick={handleButtonClick}>Click me to get items !</button>
         <button onClick={clearItems}>Clear Items</button>
@@ -100,6 +107,7 @@ function App() {
           return <h3>{studentUpperCase}</h3>;
         })}
         <br />
+        {/* Error state as an object */}
         <h3>Error state as an object</h3>
         <h5>First Name: {firstName}</h5>
         <input
