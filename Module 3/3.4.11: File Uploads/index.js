@@ -88,35 +88,35 @@ app.post('/recipe/multiple', multipleFileUpload, (request, response) => {
 });
 
 app.get('/recipe/:id', async (request, response) => {
-  const image = await axios.get(`${apiUrl}/photos/random`, {
-    headers: {
-      Authorization: `Client-ID ${accessKey}`,
-    },
-  });
-
-  const regularImageUrl = image.data.urls.regular;
-  const data = {
-    recipe: {
-      photo: regularImageUrl,
-    },
-  };
-  response.render('recipe', data);
-
-  // const sqlQuery = 'SELECT * FROM recipes WHERE id=$1;';
-  // const values = [request.params.id];
-  // // Query using pg.Pool instead of pg.Client
-  // pool.query(sqlQuery, values, (error, result) => {
-  //   if (error) {
-  //     console.log(error);
-  //     // console.log('Error executing query', error.stack);
-  //     response.status(503).send(error.message);
-  //     return;
-  //   }
-  //   const data = {
-  //     recipe: result.rows[0],
-  //   };
-  //   response.render('recipe', data);
+  // const image = await axios.get(`${apiUrl}/photos/random`, {
+  //   headers: {
+  //     Authorization: `Client-ID ${accessKey}`,
+  //   },
   // });
+
+  // const regularImageUrl = image.data.urls.regular;
+  // const data = {
+  //   recipe: {
+  //     photo: regularImageUrl,
+  //   },
+  // };
+  // response.render('recipe', data);
+
+  const sqlQuery = 'SELECT * FROM recipes WHERE id=$1;';
+  const values = [request.params.id];
+  // Query using pg.Pool instead of pg.Client
+  pool.query(sqlQuery, values, (error, result) => {
+    if (error) {
+      console.log(error);
+      // console.log('Error executing query', error.stack);
+      response.status(503).send(error.message);
+      return;
+    }
+    const data = {
+      recipe: result.rows[0],
+    };
+    response.render('recipe', data);
+  });
 });
 
 app.listen(3004);

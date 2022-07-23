@@ -5,8 +5,6 @@ import ClassCounter from './components/classCoutner';
 import ListItem from './components/listItem';
 
 function App() {
-  const [items, setItems] = useState([1]);
-
   // * Input component
 
   const [name, setName] = useState('');
@@ -22,8 +20,9 @@ function App() {
   };
 
   // * Ajax request demo!
+  const [items, setItems] = useState([]);
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (pageNumber) => {
     const resp = await axios.get('http://localhost:3005/getItems');
     setItems(resp.data);
   };
@@ -36,7 +35,7 @@ function App() {
     setTimeout(async () => {
       const resp = await axios.get('http://localhost:3005/getItems');
       setItems(resp.data);
-    }, 500);
+    }, 1000);
   };
 
   // this will run before the component is "mounted" aka - displayed on the screen
