@@ -1,0 +1,8 @@
+# File that sometimes appears on MacOS
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# Do not commit the distribution folder compiled by Webpack
+dist
