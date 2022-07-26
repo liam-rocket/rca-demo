@@ -41,14 +41,25 @@
   display: flex;
   flex-wrap: wrap;
   align-content: 'left';
+  padding-right: 50px;
 }
 
 .e-commerce-wrapper {
   display: flex;
   flex-direction: row;
+  padding: 30px;
 }
 
 .item-details-wrapper {
+  flex: 0 0 30%;
+  display: flex;
+  padding-right: 50px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.cart-wrapper {
   flex: 0 0 30%;
   display: flex;
   justify-content: flex-start;

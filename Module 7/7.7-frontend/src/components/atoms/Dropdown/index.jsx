@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, handleChange }) => {
   return (
-    <select>
+    <select onChange={handleChange}>
       {options.map((option) => (
         <option value={option}>{option}</option>
       ))}

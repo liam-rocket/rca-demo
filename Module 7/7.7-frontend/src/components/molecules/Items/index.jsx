@@ -5,7 +5,7 @@ const Items = ({ items, handleClick }) => {
   return (
     <div className="items-wrapper">
       {items.map((item) => (
-        <Button text={item.name} handleClick={() => handleClick(item)} />
+        <Button text={item.name} handleClick={() => handleClick(item.id)} />
       ))}
     </div>
   );
