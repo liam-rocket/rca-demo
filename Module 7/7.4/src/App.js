@@ -21,6 +21,7 @@ function App() {
 
   // * Ajax request demo!
   const [items, setItems] = useState([]);
+  const [gotItems, setGotItems] = useState(null);
 
   const handleButtonClick = async (pageNumber) => {
     const resp = await axios.get('http://localhost:3005/getItems');
@@ -35,7 +36,8 @@ function App() {
     setTimeout(async () => {
       const resp = await axios.get('http://localhost:3005/getItems');
       setItems(resp.data);
-    }, 1000);
+      setGotItems('your data is here !');
+    }, 2000);
   };
 
   // this will run before the component is "mounted" aka - displayed on the screen
@@ -100,6 +102,7 @@ function App() {
         <h3>Ajax request demo!</h3>
         <button onClick={handleButtonClick}>Click me to get items !</button>
         <button onClick={clearItems}>Clear Items</button>
+        {gotItems && <h1>{gotItems}</h1>}
         <ListItem items={items} />
         {items.map((item) => {
           const student = 'andrew';

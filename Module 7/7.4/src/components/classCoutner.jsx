@@ -8,6 +8,10 @@ class ClassCounter extends React.Component {
     };
   }
 
+  componentWillMount() {
+    console.log('component will mount here :)');
+  }
+
   render() {
     const incrementCount = () => {
       this.setState({ count: this.state.count + 1 });
