@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/use-auth';
 
 const Home = ({ ...props }) => {
@@ -7,9 +7,10 @@ const Home = ({ ...props }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { from } = {
-    from: { pathname: '/authed-page' },
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/about-me';
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,13 +23,15 @@ const Home = ({ ...props }) => {
   const handleSignIn = async () => {
     try {
       await signIn(email, password);
+      navigate(from, { replace: true });
     } catch (err) {
       alert(err.params);
     }
   };
 
   if (isAuthenticated) {
-    <Navigate to={from.pathname} />;
+    console.log('isAuthenticated: ', isAuthenticated);
+    navigate(from, { replace: true });
   }
 
   return (

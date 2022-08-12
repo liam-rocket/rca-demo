@@ -44,7 +44,7 @@ class AuthApi {
   async logout() {
     return new Promise((resolve, reject) => {
       try {
-        resolve(apiService.get('/logout'));
+        resolve(apiService.get('/sign-out'));
       } catch (err) {
         console.error('[Auth Api]: ', err);
         reject(new Error('Internal server error'));

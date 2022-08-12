@@ -1,9 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  useLocation,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 
-import AuthenticatedRoute from './auth';
+import { useAuth } from './hooks/use-auth';
 
 const Home = React.lazy(() => import('./pages/Home'));
+const AboutMe = React.lazy(() => import('./pages/AboutMe'));
 
 const routes = [
   {
@@ -11,6 +18,25 @@ const routes = [
     element: <Home />,
   },
 ];
+
+const authenticatedRoutes = [
+  {
+    path: '/about-me',
+    name: 'about-me',
+    element: <AboutMe />,
+  },
+];
+
+function RequireAuth({ children }) {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
 
 function App() {
   return (
@@ -21,7 +47,13 @@ function App() {
             {routes.map((route) => (
               <Route path={route.path} exact element={route.element} />
             ))}
-            <AuthenticatedRoute />
+            {authenticatedRoutes.map((route) => (
+              <Route
+                path={route.path}
+                exact
+                element={<RequireAuth>{route.element}</RequireAuth>}
+              />
+            ))}
           </Routes>
         </Router>
       </React.Suspense>

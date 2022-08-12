@@ -10,6 +10,7 @@ class AuthController {
         throw new HttpException(500, 30001, 'Email not found');
       }
 
+      res.cookie('user', 'liam');
       res.cookie('isLoggedIn', true);
       res.status(200).json({
         success: true,
@@ -22,8 +23,9 @@ class AuthController {
 
   reAuth = async (req, res, next) => {
     try {
-      console.log('reauth ran');
-      res.cookie('isLoggedIn', true);
+      console.log('re-auth ran');
+      const { user } = req;
+      if (user) res.cookie('isLoggedIn', true);
       res.status(200).json({
         success: true,
         data: { firstName: 'Liam', lastName: 'Leung' },

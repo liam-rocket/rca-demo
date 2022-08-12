@@ -126,6 +126,7 @@ export const AuthProvider = (props) => {
           });
         }
       } catch (err) {
+        console.log(err);
         if (err.code === 30018) {
           await logout();
           window.location.push('/').catch(console.error);
