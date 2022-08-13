@@ -25,6 +25,7 @@ class AuthController {
     try {
       console.log('re-auth ran');
       const { user } = req;
+      // can run a db query to check if it is a real user
       if (user) res.cookie('isLoggedIn', true);
       res.status(200).json({
         success: true,

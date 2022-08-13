@@ -11,9 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack_conf/webpack.prod.js",
     "debug": "nodemon --inspect index.mjs",
-    "start": "node index.mjs",
-    "watch-webpack": "webpack --watch --config webpack_conf/webpack.dev.js",
-    "watch": "concurrently \"nodemon index.js\" \"npm run watch-webpack\""
+    "start": "node index.mjs"
   },
   "author": "",
   "license": "ISC",
@@ -46,10 +44,7 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "sequelize": "^6.19.0",
-    "sequelize-cli": "^6.2.0",
-    "webpack": "^5.71.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-merge": "^5.7.3"
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",
