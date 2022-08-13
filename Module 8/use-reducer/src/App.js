@@ -22,7 +22,6 @@ const routes = [
 const authenticatedRoutes = [
   {
     path: '/about-me',
-    name: 'about-me',
     element: <AboutMe />,
   },
 ];

@@ -2,6 +2,7 @@ import { createContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { authApi } from '../api/auth-api';
 
+// single source of truth,
 const ActionType = {
   INITIALIZE: 'INITIALIZE',
   SIGNIN: 'SIGNIN',
@@ -51,49 +52,21 @@ const handlers = {
     };
   },
 
-  VERIFY_EMAIL: (state) => {
-    return {
-      ...state,
-      isAuthenticated: true,
-    };
-  },
-
-  VERIFY_2FA: (state) => {
-    return {
-      ...state,
-      isAuthenticated: true,
-    };
-  },
-
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
     // user: null,
   }),
-
-  REGISTER: (state, action) => {
-    const { user } = action.payload;
-
-    return {
-      ...state,
-      isAuthenticated: false,
-      user,
-    };
-  },
-  CHANGE_COMPANY: (state) => {
-    return {
-      ...state,
-      isAuthenticated: true,
-    };
-  },
 };
 
+// if action.type exists, then call the handler function with the same name, else just return the current state
+// we get the action.type from dispatch functions (see below)
 const reducer = (state, action) =>
   handlers[action.type] ? handlers[action.type](state, action) : state;
 
 export const AuthContext = createContext({
   ...initialState,
-  signin: () => Promise.resolve(),
+  signIn: () => Promise.resolve(),
   logout: () => Promise.resolve(),
   reAuth: () => Promise.resolve(),
 });
@@ -106,9 +79,11 @@ export const AuthProvider = (props) => {
     const initialize = async () => {
       try {
         let { success, data } = await authApi.reAuth();
-
         if (success) {
           const user = await authApi.me(data);
+          // this object that we pass into dispatch will be the action
+          // the action is used in the reducer in line 64
+          // depending on the action, then we will access the payload in the handler functions above (line 22)
           dispatch({
             type: ActionType.INITIALIZE,
             payload: {
