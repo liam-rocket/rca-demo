@@ -17,6 +17,7 @@ class AuthController {
         data: { firstName: 'Liam', lastName: 'Leung' },
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   };

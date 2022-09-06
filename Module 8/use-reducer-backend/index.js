@@ -9,6 +9,7 @@ import AuthRouter from './routes/auth.routes.js';
 
 import errorMiddleware from './middlewares/error.middleware.js';
 
+// todo: remember to add this into your app.use(cors())
 const corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true,

@@ -55,7 +55,10 @@ const handlers = {
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
-    // user: null,
+    user: {
+      firstName: '',
+      lastName: '',
+    },
   }),
 };
 
@@ -80,7 +83,6 @@ export const AuthProvider = (props) => {
       try {
         let { success, data } = await authApi.reAuth();
         if (success) {
-          const user = await authApi.me(data);
           // this object that we pass into dispatch will be the action
           // the action is used in the reducer in line 64
           // depending on the action, then we will access the payload in the handler functions above (line 22)
@@ -88,7 +90,7 @@ export const AuthProvider = (props) => {
             type: ActionType.INITIALIZE,
             payload: {
               isAuthenticated: true,
-              user,
+              user: data,
             },
           });
         } else {
