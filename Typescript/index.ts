@@ -32,6 +32,8 @@ const personTwo = {
   nationality: 'HK',
 };
 
+const arr: Person[] = [person, personTwo];
+
 const whoIsThis = (person: Person) => {
   console.log(`This is ${person.name}`);
   console.log(`He studies at ${person.school}`);
