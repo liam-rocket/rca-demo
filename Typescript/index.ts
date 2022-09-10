@@ -11,7 +11,7 @@ const getSum = (number1: number, number2: number): number => {
 console.log(getSum(1, 2));
 
 interface Person {
-  name?: string;
+  name?: string | number;
   school: string;
   age: number;
   jobs: string[];
