@@ -1,51 +1,51 @@
-// class Car {
-//   constructor(driver, color, numberOfDoors) {
-//     this.driver = driver;
-//     this.color = color;
-//     this.numberOfDoors = numberOfDoors;
-//   }
-
-//   drive() {
-//     console.log(`${this.driver} is driving`);
-//   }
-
-//   park(carpark) {
-//     console.log(`${this.driver} parked the car at ${carpark}`);
-//   }
-// }
-
-// const redFerrari = new Car('liam', 'red', 2);
-// const blueLambo = new Car('aqif', 'blue', 2);
-
-// blueLambo.drive();
-// blueLambo.park('marina bay sands');
-
-class House {
-  constructor(noOfWindows, color) {
-    this.noOfWindows = noOfWindows;
+class Car {
+  constructor(driver, color, numberOfDoors) {
+    this.driver = driver;
     this.color = color;
-    this.rentingOn = '';
+    this.numberOfDoors = numberOfDoors;
   }
 
-  list(platform) {
-    this.rentingOn = platform;
-    return 'this house';
+  drive() {
+    console.log(`${this.driver} is driving`);
   }
 
-  expand(windows) {
-    this.noOfWindows = windows;
+  park(carpark) {
+    console.log(`${this.driver} parked the car at ${carpark}`);
   }
 }
 
-const redHouse = new House(10, 'brown');
-const blueHouse = new House(5, 'blue');
+const redFerrari = new Car('liam', 'red', 2);
+const blueLambo = new Car('aqif', 'blue', 2);
 
-blueHouse.list('airbnb');
-redHouse.list('99.co');
+blueLambo.drive();
+blueLambo.park('marina bay sands');
 
-console.log(blueHouse.rentingOn);
-console.log(redHouse.rentingOn);
+// class House {
+//   constructor(noOfWindows, color) {
+//     this.noOfWindows = noOfWindows;
+//     this.color = color;
+//     this.rentingOn = '';
+//   }
 
-redHouse.expand(20);
+//   list(platform) {
+//     this.rentingOn = platform;
+//     return 'this house';
+//   }
 
-console.log(redHouse.noOfWindows);
+//   expand(windows) {
+//     this.noOfWindows = windows;
+//   }
+// }
+
+// const redHouse = new House(10, 'brown');
+// const blueHouse = new House(5, 'blue');
+
+// blueHouse.list('airbnb');
+// redHouse.list('99.co');
+
+// console.log(blueHouse.rentingOn);
+// console.log(redHouse.rentingOn);
+
+// redHouse.expand(20);
+
+// console.log(redHouse.noOfWindows);

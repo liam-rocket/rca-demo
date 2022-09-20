@@ -11,5 +11,3 @@ const paragraph: any = {
   font: 'h1',
   numberOfWords: 100,
 };
-
-fetch;
