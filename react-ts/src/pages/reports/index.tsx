@@ -1,20 +1,23 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useAuth } from 'src/hooks/use-auth';
+import Name from 'src/components/reports/Name';
+import Email from 'src/components/reports/Email';
 
 const Home: NextPage = () => {
   const { user } = useAuth();
-  console.log(user);
+
   return (
     <>
       <Head>
         <title>Reports</title>
       </Head>
       <br />
-      {user.name} is logged in !
+      You are logged in !
       <br />
       <br />
-      his email is {user.email}
+      <Name name={user.name} />
+      <Email email={user.email} />
     </>
   );
 };
