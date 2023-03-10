@@ -1,4 +1,4 @@
-const bootcamp: string = 'ptbc2';
+const bootcamp: string = 'ptbc5';
 
 const getBootcamp = (student: string): string => {
   return `${student} is in ${bootcamp}`;

@@ -25,7 +25,7 @@ class Square extends Rectangle {
 }
 
 // const rec = new Rectangle(6, 8);
-const square = new Square(4);
+const square: Square = new Square(4); // <-- what if we type it as a string ?
 
 // const area = rec.getArea();
 const squareWith = square.toString();
