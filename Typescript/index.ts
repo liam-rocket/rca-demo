@@ -1,4 +1,49 @@
+// These are primitves
 const bootcamp: string = 'ptbc5';
+const score: number = 10;
+const isSaturday: boolean = true;
+
+const strings: string[] = ['hello', 'liam', 'good', 'morning'];
+
+interface Job {
+  title: string;
+  manager: string;
+}
+
+interface User {
+  name: string;
+  age: number;
+  location: string;
+  job?: Job;
+}
+
+const person: User = {
+  name: 'liam',
+  age: 28,
+  location: 'hk',
+};
+
+const rocketClass: User[] = [
+  {
+    name: 'liam',
+    age: 28,
+    location: 'hk',
+  },
+  {
+    name: 'john',
+    age: 28,
+    location: 'hk',
+    job: {
+      title: 'section leader',
+      manager: 'sam o',
+    },
+  },
+  {
+    name: 'jane',
+    age: 28,
+    location: 'hk',
+  },
+];
 
 const getBootcamp = (student: string): string => {
   return `${student} is in ${bootcamp}`;
@@ -10,59 +55,45 @@ const getSum = (number1: number, number2: number): number => {
 };
 console.log(getSum(1, 2));
 
-interface Person {
-  name?: string | number;
-  school: string;
-  age: number;
-  jobs: string[];
-}
+// const personTwo = {
+//   // name: 'cherry',
+//   school: 'harvard',
+//   age: 58,
+//   jobs: ['binery', 'rocket'],
+//   nationality: 'HK',
+// };
 
-const person = {
-  name: 'liam',
-  school: 'rocket',
-  age: 28,
-  jobs: ['binery', 'rocket'],
-};
+// const arr: Person[] = [person, personTwo];
 
-const personTwo = {
-  // name: 'cherry',
-  school: 'harvard',
-  age: 58,
-  jobs: ['binery', 'rocket'],
-  nationality: 'HK',
-};
+// const whoIsThis = (person: Person) => {
+//   console.log(`This is ${person.name}`);
+//   console.log(`He studies at ${person.school}`);
+//   console.log(`He is ${person.age} years old`);
 
-const arr: Person[] = [person, personTwo];
+//   person.jobs.map((job: string) => {
+//     console.log(`He works at ${job}`);
+//   });
 
-const whoIsThis = (person: Person) => {
-  console.log(`This is ${person.name}`);
-  console.log(`He studies at ${person.school}`);
-  console.log(`He is ${person.age} years old`);
+//   return 'done';
+// };
 
-  person.jobs.map((job: string) => {
-    console.log(`He works at ${job}`);
-  });
+// // can put default value
+// const whoIsThisTwo = ({
+//   name = 'vanessa',
+//   school,
+//   age,
+//   jobs,
+//   nationality,
+// }: Person) => {
+//   console.log(`This is ${name}`);
+//   console.log(`He studies at ${school}`);
+//   console.log(`He is ${age} years old`);
 
-  return 'done';
-};
+//   jobs.map((job: string) => {
+//     console.log(`He works at ${job}`);
+//   });
 
-// can put default value
-const whoIsThisTwo = ({
-  name = 'vanessa',
-  school,
-  age,
-  jobs,
-  nationality,
-}: Person) => {
-  console.log(`This is ${name}`);
-  console.log(`He studies at ${school}`);
-  console.log(`He is ${age} years old`);
+//   return 'done';
+// };
 
-  jobs.map((job: string) => {
-    console.log(`He works at ${job}`);
-  });
-
-  return 'done';
-};
-
-whoIsThisTwo(personTwo);
+// whoIsThisTwo(personTwo);

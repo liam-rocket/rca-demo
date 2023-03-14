@@ -1,0 +1,35 @@
+{
+  "name": "module-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack_conf/webpack.prod.js",
+    "debug": "nodemon --inspect index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.2.1",
+    "cors": "^2.8.5",
+    "css-loader": "^5.0.1",
+    "express": "^4.17.3",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.15",
+    "npm": "^8.8.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0"
+  }
+}

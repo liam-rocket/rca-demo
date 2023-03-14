@@ -7,6 +7,10 @@ import Email from 'src/components/reports/Email';
 const Home: NextPage = () => {
   const { user } = useAuth();
 
+  const handleClick = (name: string): string => {
+    return `${name} clicked !`;
+  };
+
   return (
     <>
       <Head>
@@ -17,7 +21,7 @@ const Home: NextPage = () => {
       <br />
       <br />
       <Name name={user.name} />
-      <Email email={user.email} />
+      <Email email={user.email} handleClick={handleClick} />
     </>
   );
 };
