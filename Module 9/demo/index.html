@@ -1,4 +1,4 @@
-<html lang="en">
+<!-- <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,7 +7,26 @@
   </head>
   <body>
     <div id="mainBody"></div>
+    <input type="text" id="search-box" />
     <button onclick="onClick()">Click me!</button>
   </body>
   <script src="./script.js"></script>
+  <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XSS Example</title>
+  </head>
+  <body>
+    <input type="text" id="search-box" />
+    <button onclick="search()">Search</button>
+    <script>
+      function search() {
+        var searchTerm = document.getElementById('search-box').value;
+        document.write("Search results for '" + searchTerm + "'");
+      }
+    </script>
+  </body>
 </html>

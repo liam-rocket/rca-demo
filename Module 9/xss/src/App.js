@@ -2,21 +2,23 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [validationMessage, setValidationMessage] = useState('');
+  const [message, setMessage] = useState('');
 
-  const validateMessage = async () => {
-    setTimeout(() => {
-      setValidationMessage(
-        `Invalid referral code, <script>alert('hello');</script>`
-      );
-    }, 1000);
+  const apiCall = () => {
+    setTimeout(() => {}, 2000);
+    return '<script>alert("you have been hacked !");</script>';
+  };
+
+  const makeApiCall = () => {
+    const potentiallyMaliciousCode = apiCall();
+    setMessage(potentiallyMaliciousCode);
   };
 
   return (
     <div className="App">
       <input placeholder="Enter your referral code" />
-      <button onClick={validateMessage}>Enter</button>
-      <div>{validationMessage}</div>
+      <button onClick={makeApiCall}>Enter</button>
+      <div>{message}</div>
     </div>
   );
 }
