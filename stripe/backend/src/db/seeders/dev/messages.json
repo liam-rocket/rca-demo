@@ -1,0 +1,12 @@
+[
+  {
+    "roomId": 1,
+    "sender": "liam",
+    "message": "welcome !"
+  },
+  {
+    "roomId": 1,
+    "sender": "lisa",
+    "message": "haha !"
+  }
+]
