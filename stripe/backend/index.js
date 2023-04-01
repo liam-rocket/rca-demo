@@ -26,20 +26,25 @@ app.get('/', async (req, res) => {
   res.status(200).json({ success: true });
 });
 
+// * new registration -> create customer on stripe
 app.post('/register', authController.registration);
 
+// * retrieve exisitng products on stripe, as well as the prices
 app.get('/products', productController.getProducts);
 
+// * charge an existing customer with an random amount
 app.get(
   '/checkout/custom/:customerId',
   checkoutController.createCustomCheckoutSession
 );
 
+// * create an existing customer on stripe with an existing product + price
 app.get(
   '/checkout/:priceId/:quantity/:customerId',
   checkoutController.createCheckoutSession
 );
 
+// * get payment history of a customer
 app.get('/payments/:customerId', paymentController.getPaymentHistory);
 
 const initializeApp = async () => {

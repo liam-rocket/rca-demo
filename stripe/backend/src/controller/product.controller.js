@@ -1,6 +1,4 @@
 /* eslint-disable no-await-in-loop */
-const { all } = require('cat-names');
-
 class ProductController {
   constructor(stripe) {
     this.stripe = stripe;
