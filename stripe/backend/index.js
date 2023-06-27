@@ -3,13 +3,19 @@ const Stripe = require('stripe');
 const bodyParser = require('body-parser');
 const express = require('express');
 require('./environment');
+
 const initializeSequelize = require('./src/db/models/index.js');
+
+// import controllers
 const AuthController = require('./src/controller/auth.controller');
 const ProductController = require('./src/controller/product.controller');
 const CheckoutController = require('./src/controller/checkout.controller');
 const PaymentController = require('./src/controller/payment.controller');
 
+// initialise stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+// initialise controllers
 const authController = new AuthController(stripe);
 const productController = new ProductController(stripe);
 const checkoutController = new CheckoutController(stripe);
@@ -22,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(express.json());
 
+// routes
 app.get('/', async (req, res) => {
   res.status(200).json({ success: true });
 });
