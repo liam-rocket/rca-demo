@@ -58,8 +58,13 @@ body {
 }
 
 #boxes-wrapper {
-  width: 80%;
+  width: 700px;
   height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-row {
