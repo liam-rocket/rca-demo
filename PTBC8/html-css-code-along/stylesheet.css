@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  /* todo: set max width */
+}
+
+#main-bg {
+  /* background-color: darkgray; */
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(184, 0, 0, 1) 59%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#landing-text {
+}
+
+#main-text {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
+#main-subtext {
+  color: #ffffff71;
+  text-align: center;
+}
+
+#secondary-bg {
+  background-color: dodgerblue;
+  width: 100%;
+  height: 90vh;
+  /* todo: height: auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#secondary-text {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  text-decoration: underline;
+}
+
+.portfolio-box {
+  width: 200px;
+  height: 200px;
+  background-color: black !important;
+  margin: 10px;
+}
+
+#boxes-wrapper {
+  width: 700px;
+  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* todo: nav bar */
+#nav-main {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  position: fixed;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+
+  filter: drop-shadow(5px 5px 10px #000);
+}
+
+#nav-logo {
+  margin: 0;
+}
+
+#third-bg {
+  background-color: pink;
+  height: 90vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#sticky-text {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  /* z-index: 3; */
+}
+
+#padding-button {
+  padding: 20px;
+  margin: 100px;
+}
+
+#forth-bg {
+  background-color: rgb(33, 95, 86);
+  height: 90vh;
+  padding: 50px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative; */
+}
+
+.absolute-box {
+  background-color: red !important;
+  /* position: absolute; */
+  top: 0;
+  left: 10;
+  z-index: 1;
+
+  margin-left: auto;
+  margin-right: auto;
+}
