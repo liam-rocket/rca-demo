@@ -147,3 +147,22 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.white-bg {
+  background-color: white;
+  height: 90vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+#form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}

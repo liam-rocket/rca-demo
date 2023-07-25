@@ -4,6 +4,7 @@ import SectionOne from './components/SectionOne';
 import SectionTwo from './components/SectionTwo';
 import SectionThree from './components/SectionThree';
 import SectionFour from './components/SectionFour';
+import SectionFive from './components/SectionFive';
 
 function App() {
   const onButtonClick = () => {
@@ -13,11 +14,12 @@ function App() {
   return (
     <div className="App">
       {/* passing in values to components as a prop */}
-      <NavBar onButtonClick={onButtonClick} logo="James" />
+      <NavBar onButtonClick={onButtonClick} logo="Rocket Academy" />
       <SectionOne name="Vanessa" age={28} />
       <SectionTwo />
       <SectionThree />
       <SectionFour />
+      <SectionFive />
     </div>
   );
 }
