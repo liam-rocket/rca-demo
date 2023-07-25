@@ -9,4 +9,7 @@ const SectionFive = () => {
   );
 };
 
+export const name = 'Liam';
+export const age = 28;
+
 export default SectionFive;
