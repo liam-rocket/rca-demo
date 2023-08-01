@@ -22,12 +22,24 @@ function App() {
     alert('Hello !');
   };
 
+  const boxes = (
+    <>
+      <div className="portfolio-box"></div>
+      <div className="portfolio-box"></div>
+      <div className="portfolio-box"></div>
+      <div className="portfolio-box"></div>
+      <div className="portfolio-box"></div>
+      <div className="portfolio-box"></div>
+    </>
+  );
+
   return (
     <div className="App">
       {/* passing in values to components as a prop */}
       <NavBar onButtonClick={onButtonClick} logo="Rocket Academy" />
       <SectionOne name="Vanessa" age={28} />
-      <SectionTwo />
+      {/* <SectionTwo> */}
+      <SectionTwo>{boxes}</SectionTwo>
       <SectionThree />
       <SectionFour />
       <SectionFive />
