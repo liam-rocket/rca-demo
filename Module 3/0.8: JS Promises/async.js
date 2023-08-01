@@ -12,13 +12,15 @@ import axios from 'axios';
 
 const getDogImage = async () => {
   try {
-    const response = await axios.get('http://localhost:3004/items/banana');
+    const response = await axios.get('http://dog.ceo/api/breeds/image/random');
+    return response.data.message;
   } catch (err) {
     console.log(err);
   }
 };
 
-await getDogImage();
+const dogImage = await getDogImage();
+console.log(dogImage);
 
 // console.log('expect this to come second');
 

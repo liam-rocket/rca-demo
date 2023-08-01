@@ -12,6 +12,7 @@ import {
   SectionThree,
   SectionFour,
   SectionFive,
+  ApiDemo,
 } from './components';
 
 // import * as Sections from './components';
@@ -30,6 +31,7 @@ function App() {
       <SectionThree />
       <SectionFour />
       <SectionFive />
+      <ApiDemo />
     </div>
   );
 }
