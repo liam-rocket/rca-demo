@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Home = () => {
@@ -12,6 +12,24 @@ const Home = () => {
   const [test, twoDispatch] = useReducer((state, action) => {
     return state + action;
   }, 0);
+
+  const [isJs, setIsJs] = useState(true);
+  const [questions, setQuestions] = useState({});
+
+  const importQuestions = async () => {
+    if (isJs) {
+      const questions = await import('./js.json');
+      setQuestions(questions.default);
+    } else {
+      setQuestions(await import('./react.json').default);
+    }
+  };
+
+  useEffect(() => {
+    importQuestions();
+  }, []);
+
+  console.log('questions: ', questions);
 
   return (
     <div>
