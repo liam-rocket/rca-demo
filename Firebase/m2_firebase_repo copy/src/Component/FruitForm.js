@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { push, ref, set } from 'firebase/database';
-import { realTimeDatabase } from '../firebase';
-
 import { writeData, editData } from '../api/realtimedatabase';
 
 const FruitForm = () => {

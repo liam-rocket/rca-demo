@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   fetchData,
-  getSpecificFruit,
+  getSpecificData,
   deleteData,
 } from '../api/realtimedatabase';
 
@@ -11,24 +11,27 @@ const FruitList = () => {
   });
 
   // * load all data
-  const loadData = async () => {
-    const fruitData = await fetchData();
-    setState({ fruits: [...state.fruits, fruitData] });
+  const getFruits = async () => {
+    const handleData = (data) =>
+      setState((state) => ({
+        fruits: [...state.fruits, { key: data.key, val: data.val() }],
+      }));
+    fetchData(handleData);
   };
 
   useEffect(() => {
-    loadData();
+    getFruits();
   }, []);
 
   // * get specific data
   const getFruit = (fruitKey) => {
-    getSpecificFruit(fruitKey);
+    getSpecificData(fruitKey);
   };
 
   // * delete data
   const deleteFruit = (fruitKey) => {
     deleteData(fruitKey);
-    loadData();
+    getFruits();
   };
 
   return (

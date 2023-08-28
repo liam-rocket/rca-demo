@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
-import "./App.css";
-import FruitForm from "./Component/FruitForm";
-import FruitList from "./Component/FruitList";
+import logo from './logo.svg';
+import './App.css';
+import FruitForm from './component/FruitForm';
+import FruitList from './component/FruitList';
 
 function App() {
   return (

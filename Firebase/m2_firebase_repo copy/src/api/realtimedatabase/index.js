@@ -7,25 +7,23 @@ import {
   child,
   remove,
 } from 'firebase/database';
-import { realTimeDatabase } from '../firebase';
+import { realTimeDatabase } from '../../firebase';
 
 const REALTIME_DATABASE_KEY = 'fruits';
 
 // * load all data
-const fetchData = () => {
+export const fetchData = (callback) => {
   const fruitListRef = ref(realTimeDatabase, REALTIME_DATABASE_KEY);
-  onChildAdded(fruitListRef, (data) => {
-    return { key: data.key, val: data.val() };
-  });
+  onChildAdded(fruitListRef, callback);
 };
 
 // * get specific data
-export const getSpecificFruit = (fruitKey) => {
+export const getSpecificData = (fruitKey) => {
   const fruitListRef = ref(realTimeDatabase, REALTIME_DATABASE_KEY);
   get(child(fruitListRef, `${fruitKey}`))
     .then((data) => {
       if (data.exists()) {
-        console.log(data.val());
+        return data.val();
       }
     })
     .catch((error) => {
