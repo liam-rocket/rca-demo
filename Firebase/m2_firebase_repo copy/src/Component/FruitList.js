@@ -47,6 +47,12 @@ const FruitList = () => {
                   </h2>
                   <p>{fruitItem.val.description}</p>
                 </div>
+
+                {fruitItem.val.url ? (
+                  <img src={fruitItem.val.url} alt={fruitItem.val.name} />
+                ) : (
+                  <p>No images</p>
+                )}
               </li>
               <button onClick={() => deleteFruit(fruitItem.key)}>
                 delete this

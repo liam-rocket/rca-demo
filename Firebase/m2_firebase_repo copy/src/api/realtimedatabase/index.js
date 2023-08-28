@@ -51,6 +51,7 @@ export const writeData = (data) => {
   set(newFruitRef, {
     name: data.name,
     description: data.description,
+    url: data.url,
     date: new Date().toLocaleTimeString(),
   });
 };
