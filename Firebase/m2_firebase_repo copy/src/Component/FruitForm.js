@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { push, ref, set } from 'firebase/database';
 import { realTimeDatabase } from '../firebase';
 
-const REALTIME_DATABASE_KEY = 'fruits';
+import { writeData, editData } from '../api/realtimedatabase';
 
 const FruitForm = () => {
   const [state, setState] = useState({
@@ -11,16 +11,8 @@ const FruitForm = () => {
   });
 
   // * create new data
-  const writeData = () => {
-    const fruitListRef = ref(realTimeDatabase, REALTIME_DATABASE_KEY);
-    const newFruitRef = push(fruitListRef);
-
-    set(newFruitRef, {
-      name: state.name,
-      description: state.description,
-      date: new Date().toLocaleTimeString(),
-    });
-
+  const createFruit = () => {
+    writeData(state);
     setState({
       name: '',
       description: '',
@@ -28,16 +20,8 @@ const FruitForm = () => {
   };
 
   // * edit specific data
-  const editData = (fruitKey) => {
-    const fruitListRef = ref(
-      realTimeDatabase,
-      `${REALTIME_DATABASE_KEY}/${fruitKey}`
-    );
-    set(fruitListRef, {
-      name: state.name,
-      description: state.description,
-    });
-
+  const updateFruit = (fruitKey) => {
+    editData(fruitKey, state);
     setState({
       name: '',
       description: '',
@@ -78,8 +62,8 @@ const FruitForm = () => {
         onChange={(e) => handleChange(e)}
       />
       <br />
-      <button onClick={writeData}>Submit Data</button>
-      <button onClick={editData}>Edit Data</button>
+      <button onClick={createFruit}>Submit Data</button>
+      <button onClick={updateFruit}>Edit Data</button>
     </div>
   );
 };

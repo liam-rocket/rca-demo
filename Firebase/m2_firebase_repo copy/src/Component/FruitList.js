@@ -1,52 +1,34 @@
 import React, { useState, useEffect } from 'react';
-
-import { onChildAdded, ref, get, child, remove } from 'firebase/database';
-import { realTimeDatabase } from '../firebase';
-
-const REALTIME_DATABASE_KEY = 'fruits';
+import {
+  fetchData,
+  getSpecificFruit,
+  deleteData,
+} from '../api/realtimedatabase';
 
 const FruitList = () => {
   const [state, setState] = useState({
     fruits: [],
   });
 
+  // * load all data
+  const loadData = async () => {
+    const fruitData = await fetchData();
+    setState({ fruits: [...state.fruits, fruitData] });
+  };
+
   useEffect(() => {
-    const fruitListRef = ref(realTimeDatabase, REALTIME_DATABASE_KEY);
-
-    onChildAdded(fruitListRef, (data) => {
-      console.log('data: ', data);
-      console.log('read data: ', data.key, data.val());
-
-      setState((state) => ({
-        fruits: [...state.fruits, { key: data.key, val: data.val() }],
-      }));
-    });
+    loadData();
   }, []);
 
   // * get specific data
-  const getSpecificFruit = (fruitKey) => {
-    const fruitListRef = ref(realTimeDatabase, REALTIME_DATABASE_KEY);
-    get(child(fruitListRef, `${fruitKey}`))
-      .then((data) => {
-        if (data.exists()) {
-          console.log(data.val());
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const getFruit = (fruitKey) => {
+    getSpecificFruit(fruitKey);
   };
 
   // * delete data
-  const deleteData = (fruitKey) => {
-    const fruitListRef = ref(
-      realTimeDatabase,
-      `${REALTIME_DATABASE_KEY}/${fruitKey}`
-    );
-
-    remove(fruitListRef).then(() => {
-      console.log(`${fruitKey} removed`);
-    });
+  const deleteFruit = (fruitKey) => {
+    deleteData(fruitKey);
+    loadData();
   };
 
   return (
@@ -63,7 +45,7 @@ const FruitList = () => {
                   <p>{fruitItem.val.description}</p>
                 </div>
               </li>
-              <button onClick={() => deleteData(fruitItem.key)}>
+              <button onClick={() => deleteFruit(fruitItem.key)}>
                 delete this
               </button>
             </>
