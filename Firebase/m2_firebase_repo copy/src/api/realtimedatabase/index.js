@@ -10,6 +10,7 @@ import {
 import { realTimeDatabase } from '../../firebase';
 
 const REALTIME_DATABASE_KEY = 'fruits';
+const FOOD_REALTIME_DATABASE_KEY = 'food'; // ? you can have different keys
 
 // * load all data
 export const fetchData = (callback) => {

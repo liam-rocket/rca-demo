@@ -13,8 +13,6 @@ const FruitList = () => {
   // * load all data
   const getFruits = async () => {
     const handleData = (data) => {
-      // todo: Zac -> https://firebase.google.com/docs/database/admin/save-data#node.js
-      console.log('called'); // todo: <-- this is called when creating new obj
       setState((state) => ({
         fruits: [...state.fruits, { key: data.key, val: data.val() }],
       }));

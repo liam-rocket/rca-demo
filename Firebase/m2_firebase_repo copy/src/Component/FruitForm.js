@@ -7,7 +7,6 @@ const FruitForm = () => {
     name: '',
     description: '',
     fileInputFile: null,
-    fileInputValue: '',
   });
 
   // * create new data
@@ -17,7 +16,7 @@ const FruitForm = () => {
     setState({
       name: '',
       description: '',
-      url,
+      fileInputFile: null,
     });
   };
 
@@ -27,6 +26,7 @@ const FruitForm = () => {
     setState({
       name: '',
       description: '',
+      fileInputFile: null,
     });
   };
 
@@ -43,7 +43,6 @@ const FruitForm = () => {
     setState({
       ...state,
       fileInputFile: e.target.files[0],
-      fileInputValue: e.target.file,
     });
   };
 
@@ -74,12 +73,8 @@ const FruitForm = () => {
 
       <label>Image</label>
       <br />
-      <input
-        type="file"
-        name="file"
-        value={state.fileInputValue}
-        onChange={handleFileInput}
-      />
+      <input type="file" name="file" onChange={handleFileInput} />
+
       <br />
       <button onClick={createFruit}>Submit Data</button>
       <button onClick={updateFruit}>Edit Data</button>
