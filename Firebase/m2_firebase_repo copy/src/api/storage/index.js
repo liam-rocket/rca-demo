@@ -1,4 +1,4 @@
-import { realTimeDatabase, storage } from '../../firebase';
+import { storage } from '../../firebase';
 import {
   ref as storageRef,
   uploadBytes,
