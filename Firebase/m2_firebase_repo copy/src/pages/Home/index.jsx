@@ -54,6 +54,8 @@ const Home = () => {
     setUser({});
   };
 
+  // when first load the page, the logic in the useEffect above is executed
+  // while the app is checking if the user is logged in, we will display a loading screen
   if (loading)
     return (
       <div>
@@ -64,6 +66,7 @@ const Home = () => {
       </div>
     );
 
+  // if the user is already signed in, display the below page
   if (isLoggedIn)
     return (
       <div>
@@ -77,6 +80,7 @@ const Home = () => {
       </div>
     );
 
+  // if the user is NOT signed in, make them sign in
   return (
     <div>
       <h1>Sign In</h1>

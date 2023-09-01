@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState } from 'react';
 import { register } from '../../api/authentication';
 
 const Register = () => {
