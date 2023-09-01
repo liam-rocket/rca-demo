@@ -1,27 +1,35 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import FruitForm from './component/FruitForm';
-import FruitList from './component/FruitList';
+
+import Home from './pages/Home';
+import Fruits from './pages/Fruits';
+import Register from './pages/Register';
+
+const routes = [
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/fruits',
+    element: <Fruits />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <FruitForm />
-        <FruitList />
-      </header>
+      <Router>
+        <Routes>
+          {routes.map((route) => (
+            <Route path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </Router>
     </div>
   );
 }
