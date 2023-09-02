@@ -101,7 +101,7 @@ const Home = () => {
       <input
         type="text"
         name="password"
-        value={state.description}
+        value={state.password}
         placeholder="Enter Password"
         onChange={(e) => handleChange(e)}
       />
