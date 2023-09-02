@@ -54,6 +54,6 @@ export const reAuth = (callback) => {
   onAuthStateChanged(auth, callback);
 };
 
-export const getCurrentUser = () => {
-  return auth.currentUser;
-};
+// export const getCurrentUser = () => {
+//   return auth.currentUser;
+// };

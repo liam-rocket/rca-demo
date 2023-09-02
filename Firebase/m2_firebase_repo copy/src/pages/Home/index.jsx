@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { signIn, reAuth, logOut } from '../../api/authentication';
+import Fruits from '../Fruits';
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
+
   const [loading, setLoading] = useState(false);
+
   const [state, setState] = useState({
     email: '',
     password: '',
   });
 
   useEffect(() => {
-    const checkIfLoggedIn = (user) => {
-      if (user) {
+    const checkIfLoggedIn = (authedUser) => {
+      if (authedUser) {
+        // * user !== null / undefined, it means the user is signed in
         setIsLoggedIn(true);
         setLoading(false);
-        // User is signed in, see docs for a list of available properties
-        setUser(user);
+        setCurrentUser(authedUser);
       } else {
         setLoading(false);
         // User is signed out
@@ -51,7 +54,7 @@ const Home = () => {
   const handleSignOut = async () => {
     await logOut();
     setIsLoggedIn(false);
-    setUser({});
+    setCurrentUser({});
   };
 
   // when first load the page, the logic in the useEffect above is executed
@@ -70,13 +73,11 @@ const Home = () => {
   if (isLoggedIn)
     return (
       <div>
-        <h1>Welcome back ! {user.email}</h1>
-        <ul>
-          <li>
-            <a href="/fruits">Fruits</a>
-          </li>
-        </ul>
-        <button onClick={handleSignOut}>Sign Out</button>
+        <h1>Welcome back ! {currentUser.email}</h1>
+        <Fruits />
+        <div>
+          <button onClick={handleSignOut}>Sign Out</button>
+        </div>
       </div>
     );
 
