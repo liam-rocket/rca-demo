@@ -13,16 +13,16 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
 7. Configure as a single-page app ? -> y
 8. Add the below in the firebase.json
 
-   ````{
+   ```{
    "hosting": {
     ...
     "headers": [
       {"source": "/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
     ]
     ...
-   }```
+   }
 
-   ````
+   ```
 
 9. `npm run build`
 10. `npm run deploy`
