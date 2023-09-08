@@ -1,8 +1,8 @@
-# Deploy
+# Deployment
 
 Source: https://create-react-app.dev/docs/deployment/#firebase
 
-## Deploymnet steps
+## Steps
 
 1. `npm install -g firebase-tools` (or `sudo npm install -g firebase-tools`)
 2. `firebase login`
