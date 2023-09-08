@@ -21,7 +21,6 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
     ]
     ...
    }
-
    ```
 
 9. `npm run build`
