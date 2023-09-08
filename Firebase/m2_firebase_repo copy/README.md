@@ -23,5 +23,7 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
    }
    ```
 
+   Exmaple available [here](https://github.com/liam-rocket/rca-demo/blob/main/Firebase/m2_firebase_repo%20copy/firebase.json).
+
 9. `npm run build`
 10. `npm run deploy`
