@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { signIn, reAuth, logOut } from '../../api/authentication';
-import Fruits from '../Fruits';
+import { Navigate } from 'react-router-dom';
+import { signIn, reAuth } from '../../api/authentication';
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+
+  console.log('isLoggedIn: ', isLoggedIn);
 
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +20,6 @@ const Home = () => {
         // * user !== null / undefined, it means the user is signed in
         setIsLoggedIn(true);
         setLoading(false);
-        setCurrentUser(authedUser);
       } else {
         setLoading(false);
         // User is signed out
@@ -51,35 +51,13 @@ const Home = () => {
     });
   };
 
-  const handleSignOut = async () => {
-    await logOut();
-    setIsLoggedIn(false);
-    setCurrentUser({});
-  };
-
   // when first load the page, the logic in the useEffect above is executed
   // while the app is checking if the user is logged in, we will display a loading screen
-  if (loading)
-    return (
-      <div>
-        <br />
-        <br />
-        <br />
-        Loading.....
-      </div>
-    );
+  if (loading) return <div style={{ marginTop: '50px' }}>Loading.....</div>;
 
+  // * redirect if logged in
   // if the user is already signed in, display the below page
-  if (isLoggedIn)
-    return (
-      <div>
-        <h1>Welcome back ! {currentUser.email}</h1>
-        <Fruits />
-        <div>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </div>
-      </div>
-    );
+  if (isLoggedIn) return <Navigate to="/fruits" />;
 
   // if the user is NOT signed in, make them sign in
   return (

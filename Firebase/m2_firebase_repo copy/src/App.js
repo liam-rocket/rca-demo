@@ -1,5 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+/* eslint-disable no-undef */
+import {
+  useLocation,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import './App.css';
+import { getCurrentUser } from './api/authentication';
+
+import Layout from './container';
 
 import Home from './pages/Home';
 import Fruits from './pages/Fruits';
@@ -11,14 +21,28 @@ const routes = [
     element: <Home />,
   },
   {
-    path: '/fruits',
-    element: <Fruits />,
-  },
-  {
     path: '/register',
     element: <Register />,
   },
 ];
+
+const authenticatedRoutes = [
+  {
+    path: '/fruits',
+    element: <Fruits />,
+  },
+];
+
+// redirect if not logged in
+function RequireAuth({ children }) {
+  const user = getCurrentUser();
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+  return children;
+}
 
 function App() {
   return (
@@ -27,6 +51,16 @@ function App() {
         <Routes>
           {routes.map((route) => (
             <Route path={route.path} element={route.element} />
+          ))}
+          {authenticatedRoutes.map((route) => (
+            <Route
+              path={route.path}
+              element={
+                <RequireAuth>
+                  <Layout> {route.element}</Layout>
+                </RequireAuth>
+              }
+            />
           ))}
         </Routes>
       </Router>
