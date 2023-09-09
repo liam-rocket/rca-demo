@@ -17,4 +17,12 @@ const Layout = ({ children }) => {
   );
 };
 
+//  <div>
+//    <h1>Welcome back ! {currentUser.email}</h1>
+//    <Fruits />
+//    <div>
+//      <button onClick={handleSignOut}>Sign Out</button>-{' '}
+//    </div>
+//  </div>;
+
 export default Layout;

@@ -14,6 +14,7 @@ import Layout from './container';
 import Home from './pages/Home';
 import Fruits from './pages/Fruits';
 import Register from './pages/Register';
+import Post from './pages/Post';
 
 const routes = [
   {
@@ -31,6 +32,10 @@ const authenticatedRoutes = [
     path: '/fruits',
     element: <Fruits />,
   },
+  {
+    path: '/posts/:postId',
+    element: <Post />,
+  },
 ];
 
 // redirect if not logged in
@@ -39,6 +44,7 @@ function RequireAuth({ children }) {
   const location = useLocation();
 
   if (!user) {
+    // if there is no currently signed in user,
     return <Navigate to="/" state={{ from: location }} replace />;
   }
   return children;
@@ -55,11 +61,7 @@ function App() {
           {authenticatedRoutes.map((route) => (
             <Route
               path={route.path}
-              element={
-                <RequireAuth>
-                  <Layout> {route.element}</Layout>
-                </RequireAuth>
-              }
+              element={<RequireAuth>{route.element}</RequireAuth>}
             />
           ))}
         </Routes>

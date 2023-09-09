@@ -11,6 +11,7 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
 5. Choose existing project (if failed, run `firebase login --reauth`)
 6. Public directory ? -> build
 7. Configure as a single-page app ? -> y
+   Set up automatic builds and deploys with GitHub? -> N
 8. Add the below in the firebase.json
 
    ```{
@@ -26,4 +27,4 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
    Exmaple available [here](https://github.com/liam-rocket/rca-demo/blob/main/Firebase/m2_firebase_repo%20copy/firebase.json).
 
 9. `npm run build`
-10. `npm run deploy`
+10. `firebase deploy`

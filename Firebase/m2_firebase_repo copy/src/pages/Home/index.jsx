@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { signIn, reAuth } from '../../api/authentication';
 
-const Home = () => {
+const Home = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { from } = props.location?.state || {
+    from: { pathname: '/' },
+  };
 
-  console.log('isLoggedIn: ', isLoggedIn);
+  console.log('from: ', props.from);
 
   const [loading, setLoading] = useState(false);
 
@@ -57,11 +60,13 @@ const Home = () => {
 
   // * redirect if logged in
   // if the user is already signed in, display the below page
-  if (isLoggedIn) return <Navigate to="/fruits" />;
+  if (isLoggedIn) return <Navigate to={{ ...from }} />;
+  // if (isLoggedIn) return <Navigate to="/posts" />;
 
   // if the user is NOT signed in, make them sign in
   return (
     <div>
+      <h1> HELLOOOO!!!</h1>
       <h1>Sign In</h1>
       <br />
       <label>Email</label>

@@ -1,8 +1,9 @@
 import '../../App.css';
 import FruitForm from '../../component/FruitForm';
 import FruitList from '../../component/FruitList';
+import Layout from '../../container';
 
-function App() {
+function Fruits() {
   return (
     <header className="App-header">
       <FruitForm />
@@ -11,4 +12,10 @@ function App() {
   );
 }
 
-export default App;
+const fruitPage = () => (
+  <Layout>
+    <Fruits />
+  </Layout>
+);
+
+export default fruitPage;
