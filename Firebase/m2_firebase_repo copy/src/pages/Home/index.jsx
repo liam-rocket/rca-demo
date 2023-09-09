@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { signIn, reAuth } from '../../api/authentication';
 
 const Home = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { from } = props.location?.state || {
+
+  const location = useLocation();
+  const { from } = location.state || {
     from: { pathname: '/' },
   };
-
-  console.log('from: ', props.from);
 
   const [loading, setLoading] = useState(false);
 

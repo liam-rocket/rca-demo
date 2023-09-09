@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from 'react-router-dom';
 import './App.css';
 import { getCurrentUser } from './api/authentication';
@@ -45,7 +46,7 @@ function RequireAuth({ children }) {
 
   if (!user) {
     // if there is no currently signed in user,
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace={true} />;
   }
   return children;
 }
