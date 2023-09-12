@@ -52,6 +52,8 @@ function RequireAuth({ children }) {
 
   console.log('haha, got you!');
 
+  const mergeConflict = 'hi';
+
   const location = useLocation();
 
   console.log('hello, creating a merge conflict');
