@@ -50,6 +50,8 @@ function RequireAuth({ children }) {
 
   const { isAuthenticated } = useAuth();
 
+  console.log('haha, got you!');
+
   const location = useLocation();
 
   if (!isAuthenticated) {
