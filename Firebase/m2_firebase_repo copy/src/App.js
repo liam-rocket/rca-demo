@@ -54,6 +54,8 @@ function RequireAuth({ children }) {
 
   const location = useLocation();
 
+  console.log('hello, creating a merge conflict');
+
   if (!isAuthenticated) {
     // if there is no currently signed in user,
     return <Navigate to="/" state={{ from: location }} replace={true} />;
