@@ -78,7 +78,6 @@ const Home = () => {
   if (isAuthenticated) {
     return <Navigate to={{ ...from }} />;
   }
-  // if (isLoggedIn) return <Navigate to="/posts" />;
 
   // if the user is NOT signed in, make them sign in
   return (
