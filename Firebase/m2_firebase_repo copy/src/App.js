@@ -1,21 +1,24 @@
 /* eslint-disable no-undef */
+import { Suspense, lazy } from 'react';
 import {
   useLocation,
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  useNavigate,
 } from 'react-router-dom';
 import './App.css';
-import { getCurrentUser } from './api/authentication';
+import { useAuth } from './hooks/useAuth';
+import Loading from './pages/Loading';
 
-import Layout from './container';
-
-import Home from './pages/Home';
-import Fruits from './pages/Fruits';
-import Register from './pages/Register';
-import Post from './pages/Post';
+/**
+ * https://react.dev/reference/react/lazy
+ * lazy lets you defer loading component’s code until it is rendered for the first time.
+ */
+const Home = lazy(() => import('./pages/Home'));
+const Fruits = lazy(() => import('./pages/Fruits'));
+const Register = lazy(() => import('./pages/Register'));
+const Post = lazy(() => import('./pages/Post'));
 
 const routes = [
   {
@@ -41,10 +44,13 @@ const authenticatedRoutes = [
 
 // redirect if not logged in
 function RequireAuth({ children }) {
-  const user = getCurrentUser();
+  // const user = getCurrentUser(); // ! removed this, replaced by useAuth()
+
+  const { isAuthenticated } = useAuth();
+
   const location = useLocation();
 
-  if (!user) {
+  if (!isAuthenticated) {
     // if there is no currently signed in user,
     return <Navigate to="/" state={{ from: location }} replace={true} />;
   }
@@ -54,6 +60,7 @@ function RequireAuth({ children }) {
 function App() {
   return (
     <div className="App">
+      {/* <Suspense> lets you display a fallback until its children have finished loading. */}
       <Router>
         <Routes>
           {routes.map((route) => (
