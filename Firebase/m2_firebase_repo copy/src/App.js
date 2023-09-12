@@ -61,19 +61,21 @@ function App() {
   return (
     <div className="App">
       {/* <Suspense> lets you display a fallback until its children have finished loading. */}
-      <Router>
-        <Routes>
-          {routes.map((route) => (
-            <Route path={route.path} element={route.element} />
-          ))}
-          {authenticatedRoutes.map((route) => (
-            <Route
-              path={route.path}
-              element={<RequireAuth>{route.element}</RequireAuth>}
-            />
-          ))}
-        </Routes>
-      </Router>
+      <Suspense fallback={<Loading />}>
+        <Router>
+          <Routes>
+            {routes.map((route) => (
+              <Route path={route.path} element={route.element} />
+            ))}
+            {authenticatedRoutes.map((route) => (
+              <Route
+                path={route.path}
+                element={<RequireAuth>{route.element}</RequireAuth>}
+              />
+            ))}
+          </Routes>
+        </Router>
+      </Suspense>
     </div>
   );
 }
