@@ -48,6 +48,7 @@ const authenticatedRoutes = [
 function RequireAuth({ children }) {
   // const user = getCurrentUser(); // ! removed this, replaced by useAuth()
 
+  const test = 'hahahhaa';
   const { isAuthenticated } = useAuth();
 
   console.log('haha, got you!');
