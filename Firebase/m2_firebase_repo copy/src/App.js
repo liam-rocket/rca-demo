@@ -11,6 +11,8 @@ import './App.css';
 import { useAuth } from './hooks/useAuth';
 import Loading from './pages/Loading';
 
+// haha, this is git :)
+
 /**
  * https://react.dev/reference/react/lazy
  * lazy lets you defer loading component’s code until it is rendered for the first time.
