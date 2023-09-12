@@ -44,11 +44,12 @@ const handlers = {
 };
 
 /**
- * 1. if action.type exists, then call the handler function with the same name,
- *    else just return the current state
- * 2. we get the action.type from dispatch functions (see below)
+ * @param {Object} state - initial state
+ * @param {Object} action - action type pass by dispatch
  */
 const reducer = (state, action) =>
+  // 1. if action.type exists, then call the handler function with the same name, else just return the current state
+  // 2. we get the action.type from dispatch functions (see below)
   handlers[action.type] ? handlers[action.type](state, action) : state;
 
 export const AuthContext = createContext({
@@ -60,6 +61,14 @@ export const AuthContext = createContext({
 
 export const AuthProvider = (props) => {
   const { children } = props;
+
+  /**
+   * https://react.dev/reference/react/useReducer
+   * useReducer gives us a stricter control of what is updated
+   *
+   * @param {Function} reducer - the reducer function
+   * @param {Object} initialState - the initial state
+   */
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -79,7 +88,6 @@ export const AuthProvider = (props) => {
 
   const reAuth = () => {
     try {
-      console.log('ran');
       authApi.reAuth((user) => {
         if (user) {
           dispatch({
@@ -121,6 +129,10 @@ export const AuthProvider = (props) => {
     });
   };
 
+  /**
+   * Integrate with useReducer - return the children prop wrapped in the provider with all of the state we want our application to have access to as the value prop.
+   * As a HOC, the children will have access to whatever we pass in as the value
+   * */
   return (
     <AuthContext.Provider
       value={{
