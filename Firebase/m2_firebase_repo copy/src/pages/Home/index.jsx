@@ -7,13 +7,12 @@ const Home = () => {
   const { isAuthenticated, loading, signIn, reAuth } = useAuth();
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false); // ! replaced by isAuthenticated
+  // const [loading, setLoading] = useState(false); // !replaced by loading
 
   const location = useLocation();
   const { from } = location.state || {
     from: { pathname: '/' },
   };
-
-  // const [loading, setLoading] = useState(false); // !replaced by loading
 
   const [state, setState] = useState({
     email: '',
@@ -35,6 +34,8 @@ const Home = () => {
     //     return null;
     //   }
     // };
+
+    // reAuth(checkIfLoggedIn)
   }, []);
 
   const signInUser = async () => {

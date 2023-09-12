@@ -2,7 +2,7 @@
 
 ## Agenda
 
+- HOC
 - go through latest changes
-- useContext
-- useReducer
 - custom hook
+- useContext + useReducer

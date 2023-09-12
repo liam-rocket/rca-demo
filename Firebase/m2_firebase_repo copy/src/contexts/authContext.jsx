@@ -1,12 +1,14 @@
 import { createContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import * as authApi from '../api/authentication';
+import { auth } from '../firebase';
 
 // single source of truth,
 const ActionType = {
   SIGNIN: 'SIGNIN',
   LOGOUT: 'LOGOUT',
   REAUTH: 'REAUTH',
+  UPDATE: 'UPDATE',
 };
 
 // declare initial state object
@@ -28,6 +30,7 @@ const handlers = {
   },
   SIGNIN: (state, action) => {
     const { user } = action.payload;
+    // whatever we returns will be the new state
     return {
       ...state,
       isAuthenticated: true,
@@ -61,7 +64,6 @@ export const AuthContext = createContext({
 
 export const AuthProvider = (props) => {
   const { children } = props;
-
   /**
    * https://react.dev/reference/react/useReducer
    * useReducer gives us a stricter control of what is updated
@@ -70,31 +72,44 @@ export const AuthProvider = (props) => {
    * @param {Object} initialState - the initial state
    */
   const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, setState] = useState({}) // * dispatch is another way to influence the (global) state
 
   useEffect(() => {
     reAuth();
   }, []);
 
-  const signIn = async (email, password) => {
-    const user = await authApi.signIn(email, password);
+  const me = () => {
+    const user = authApi.getCurrentUser();
     dispatch({
-      type: ActionType.SIGNIN,
+      type: ActionType.UPDATE,
       payload: {
-        user: user,
-        isAuthenticated: true,
+        user,
       },
     });
   };
 
+  const signIn = async (email, password) => {
+    const user = await authApi.signIn(email, password);
+
+    const action = {
+      type: ActionType.SIGNIN,
+      payload: {
+        user: user,
+      },
+    };
+    // whatever you pass in dispatch will be the action in the handler functions
+    dispatch(action);
+  };
+
   const reAuth = () => {
     try {
-      authApi.reAuth((user) => {
-        if (user) {
+      const checkIfLoggedIn = (authedUser) => {
+        if (authedUser) {
           dispatch({
             type: ActionType.REAUTH,
             payload: {
               isAuthenticated: true,
-              user,
+              user: authedUser,
               loading: false,
             },
           });
@@ -103,12 +118,14 @@ export const AuthProvider = (props) => {
             type: ActionType.REAUTH,
             payload: {
               isAuthenticated: false,
-              user: null,
+              user: authedUser, // it will be null
               loading: false,
             },
           });
         }
-      });
+      };
+
+      authApi.reAuth(checkIfLoggedIn);
     } catch (err) {
       console.error(err);
       dispatch({

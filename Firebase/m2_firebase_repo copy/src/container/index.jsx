@@ -1,14 +1,16 @@
-import { logOut } from '../api/authentication';
+import { useAuth } from '../hooks/useAuth';
 
 const Layout = ({ children }) => {
+  const { user, logout } = useAuth();
+
   const handleSigOut = async () => {
-    await logOut();
+    await logout();
     return (window.location.href = '/');
   };
 
   return (
     <div>
-      <h1>Welcome back ! </h1>
+      <h1>Welcome back ! {user.email}</h1>
       {children}
       <div>
         <button onClick={handleSigOut}>Sign Out</button>
@@ -16,13 +18,5 @@ const Layout = ({ children }) => {
     </div>
   );
 };
-
-//  <div>
-//    <h1>Welcome back ! {currentUser.email}</h1>
-//    <Fruits />
-//    <div>
-//      <button onClick={handleSignOut}>Sign Out</button>-{' '}
-//    </div>
-//  </div>;
 
 export default Layout;
