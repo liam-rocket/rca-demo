@@ -2,6 +2,6 @@ const foo = () => {
   return 'foo bar';
 };
 
-const fooBar = foo(); // this is a function
+const fooBarOne = foo(); // this is a function
 
-console.log(fooBar);
+console.log(fooBarOne);
