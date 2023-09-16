@@ -48,18 +48,8 @@ const authenticatedRoutes = [
 function RequireAuth({ children }) {
   // const user = getCurrentUser(); // ! removed this, replaced by useAuth()
 
-  const test = 'hahahhaa';
   const { isAuthenticated } = useAuth();
 
-  console.log('haha, got you!');
-
-  const mergeConflict = 'hi';
-
-  console.log('haha, got you!');
-
-  const mergeConflict = 'hi';
-
-  const test = 'merge conflict';
   const location = useLocation();
 
   console.log('hello, creating a merge conflict');
