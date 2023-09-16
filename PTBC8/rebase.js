@@ -1,7 +1,7 @@
 const foo = () => {
-  return 'bar';
+  return 'foo bar';
 };
 
-const bar = foo();
+const bar = foo(); // this is a function
 
 console.log(bar);
