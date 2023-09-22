@@ -42,7 +42,7 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
 
 ## useContext Reading Order
 
-## Code Structure (default)
+### Code Structure (default)
 
 Below is the setup of the useContext example in codebase:
 
@@ -63,6 +63,8 @@ Below is the setup of the useContext example in codebase:
     └── App.js
 
 ```
+
+### Explaination
 
 The entry point of the context is set in index.js - that is where the main main react component is usually mounted/rendered onto your “root” element(which you mark in your html).
 
@@ -101,3 +103,50 @@ useAuth() returns the variables storged in the reducer as well as the functions 
 Instead of having to import useContext and AuthContext into the file, we simply have to import useAuth().
 
 Finally, onto the actual authContext.js file.
+
+This file contains two things:
+
+1. The reducer - useReducer
+2. The context - useContext
+
+#### useReducer
+
+We starts with an initialState, and a range of handler functions that updates the state in pre-defined ways.
+
+In the handlers, each key represents a function.
+
+```bash
+const initialState = {
+  isAuthenticated: false,
+  user: null,
+  loading: true,
+};
+
+const handlers = {
+  REAUTH: (state, action) => {
+    const { isAuthenticated, user, loading } = action.payload;
+    return {
+      ...state,
+      isAuthenticated,
+      user,
+      loading,
+    };
+  },
+  .... more actions / functions
+  }
+```
+
+The `reducer` function will then decide which handler function needs to be invoked based on the dispatch action.
+
+```bash
+const reducer = (state, action) =>
+  handlers[action.type] ? handlers[action.type](state, action) : state;
+```
+
+The useReducer hook takes in two parameteres - the reducer function, and the initialState. It returns the global state and the dispatch function.
+
+```bash
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+The purpose of the dispatch function is for us to specify which action to take, which will in turn control how the state is updated.
