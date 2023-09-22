@@ -48,19 +48,20 @@ Below is the setup of the useContext example in codebase:
 
 ```bash
 │
-├── /src
-│   ├── /api
-│   │   └── /authentication
-│   │       └── index.js
-│   │
-│   ├── /contexts
-│   │   └── authContext.jsx
-│   │
-│   └── /hooks
-│       └── useAuth.ts
-│
-├── index.js
-└── App.js
+└── /src
+    ├── /api
+    │   └── /authentication
+    │       └── index.js
+    │
+    ├── /contexts
+    │   └── authContext.jsx
+    │
+    ├── /hooks
+    │   └── useAuth.ts
+    │
+    ├── index.js
+    └── App.js
+
 ```
 
 The entry point of the context is set in index.js - that is where the main main react component is usually mounted/rendered onto your “root” element(which you mark in your html).
@@ -70,9 +71,33 @@ The entry point of the context is set in index.js - that is where the main main 
 Because the AuthProvider wraps App in index.js, everything under / inside <App /> will have access to the context.
 
 ```bash
+# index.js
   <React.StrictMode>
     <AuthProvider>
       <App />
     </AuthProvider>
   </React.StrictMode>
 ```
+
+The AuthContext is consumed using a custom hook - useAuth.
+
+For example, in the RequireAuth component in App.js:
+
+```bash
+function RequireAuth({ children }) {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    // if there is no currently signed in user,
+    return <Navigate to="/" state={{ from: location }} replace={true} />;
+  }
+  return children;
+}
+```
+
+useAuth() returns the variables storged in the reducer as well as the functions defined in the context, giving us access to these global variables anywhere in the app.
+
+Instead of having to import useContext and AuthContext into the file, we simply have to import useAuth().
+
+Finally, onto the actual authContext.js file.

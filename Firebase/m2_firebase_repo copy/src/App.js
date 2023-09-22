@@ -46,13 +46,8 @@ const authenticatedRoutes = [
 
 // redirect if not logged in
 function RequireAuth({ children }) {
-  // const user = getCurrentUser(); // ! removed this, replaced by useAuth()
-
   const { isAuthenticated } = useAuth();
-
   const location = useLocation();
-
-  console.log('hello, creating a merge conflict');
 
   if (!isAuthenticated) {
     // if there is no currently signed in user,
