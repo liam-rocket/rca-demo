@@ -150,3 +150,57 @@ const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
 The purpose of the dispatch function is for us to specify which action to take, which will in turn control how the state is updated.
+
+#### useContext
+
+On the other hand in the AuthProvider, we defined a range of functions that performs a particular job, for example, signIn, reAuth, logout.
+
+```bash
+  const signIn = async (email, password) => {
+    const user = await authApi.signIn(email, password);
+
+    const action = {
+      type: ActionType.SIGNIN,
+      payload: {
+        user: user,
+      },
+    };
+    // whatever you pass in dispatch will be the action in the handler functions
+    dispatch(action);
+  };
+
+    const logout = async () => {
+    await authApi.logOut();
+    dispatch({
+      type: ActionType.LOGOUT,
+    });
+  };
+```
+
+Each of these functions will dispatch a particular action, and the global state is updated according to the `handler` associated with that action type.
+
+At the end, we pass the state, as well as the functions we want our app to have access to into the `<AuthContext.Provider />`.
+
+```bash
+   # authContext.jsx
+   <AuthContext.Provider
+   value={{
+      ...state,
+      signIn,
+      logout,
+      reAuth,
+   }}
+   >
+   {children}
+   </AuthContext.Provider>
+```
+
+Because by invoking `useContext(AuthContext)` will return the object passed into the above as `value`, therefore we are able to consume the context like the below by importing useAuth in the components and pages that we want to have access to the global state or functions from the context.
+
+```bash
+#useAuth.js
+export const useAuth = () => useContext(AuthContext);
+
+const { signIn } = useAuth()
+
+```
