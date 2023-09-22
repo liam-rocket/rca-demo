@@ -1,8 +1,19 @@
-# Deployment
+# Firebase-React
+
+React Demo Using Firebase
+
+## Table of Content
+
+- [Firebase-react](#firebase-react)
+  - [Table of Content](#table-of-content)
+  - [Deployment](#deployment)
+  - [Environment Setup](#environment-setup)
+
+## Deployment
 
 Source: https://create-react-app.dev/docs/deployment/#firebase
 
-## Steps
+### Steps
 
 1. `npm install -g firebase-tools` (or `sudo npm install -g firebase-tools`)
 2. `firebase login`
@@ -29,4 +40,4 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
 9. `npm run build`
 10. `firebase deploy`
 
-## I have made some changes !!!
+## useContext Reading Order

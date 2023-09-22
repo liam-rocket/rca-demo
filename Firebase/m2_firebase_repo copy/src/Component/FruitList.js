@@ -20,6 +20,24 @@ const FruitList = () => {
     fetchData(handleData);
   };
 
+  const handleSort = async () => {
+    const { fruits } = state;
+    const sortedFruits = [...fruits].sort((a, b) => (a.name > b.name ? 1 : -1));
+    setState({ fruits: sortedFruits });
+  };
+
+  const handleFilter = async (e) => {
+    const { fruits } = state;
+    if (e.target.value.length === 0) {
+      // bring back full list
+    }
+    const sortedFruits = fruits.filter((item) =>
+      item.name.toLowercase().includes(e.target.value)
+    );
+    console.log(sortedFruits);
+    setState({ fruits: sortedFruits });
+  };
+
   useEffect(() => {
     getFruits();
   }, []);
@@ -37,6 +55,8 @@ const FruitList = () => {
 
   return (
     <div>
+      <input label="what you want" type="text" onChange={handleFilter}></input>
+      <button onClick={handleSort}>Sort</button>
       <ol>
         {state.fruits && state.fruits.length > 0 ? (
           state.fruits.map((fruitItem) => (
