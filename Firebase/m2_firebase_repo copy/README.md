@@ -41,3 +41,38 @@ Source: https://create-react-app.dev/docs/deployment/#firebase
 10. `firebase deploy`
 
 ## useContext Reading Order
+
+## Code Structure (default)
+
+Below is the setup of the useContext example in codebase:
+
+```bash
+│
+├── /src
+│   ├── /api
+│   │   └── /authentication
+│   │       └── index.js
+│   │
+│   ├── /contexts
+│   │   └── authContext.jsx
+│   │
+│   └── /hooks
+│       └── useAuth.ts
+│
+├── index.js
+└── App.js
+```
+
+The entry point of the context is set in index.js - that is where the main main react component is usually mounted/rendered onto your “root” element(which you mark in your html).
+
+“App” is what people tend to call the file which contains the main logic of your file, or in React case, the main component, the one that represents your entire application/web-site. “App.js” would usually refer to just that, your main component, aka, your React app.
+
+Because the AuthProvider wraps App in index.js, everything under / inside <App /> will have access to the context.
+
+```bash
+  <React.StrictMode>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </React.StrictMode>
+```
