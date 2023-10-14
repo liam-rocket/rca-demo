@@ -21,6 +21,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Fruits = lazy(() => import('./pages/Fruits'));
 const Register = lazy(() => import('./pages/Register'));
 const Post = lazy(() => import('./pages/Post'));
+const SurpriseMe = lazy(() => import('./pages/SurpriseMe'));
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/surpriseMe',
+    element: <SurpriseMe />,
   },
 ];
 
