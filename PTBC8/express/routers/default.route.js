@@ -15,9 +15,9 @@ defaultRouter.get('/image/dog', async (req, res) => {
   res.status(200).json({ success: true, data: dogImageLink });
 });
 
-// http://localhost:3000/user/liam
-defaultRouter.get('/users/:name', (req, res) => {
-  const { name } = req.params;
+// http://localhost:3000/user/liam/
+defaultRouter.get('/users/:name/:age', (req, res) => {
+  const { name, age } = req.params;
   res.status(200).json({ success: true, data: `This is ${name}` });
 });
 

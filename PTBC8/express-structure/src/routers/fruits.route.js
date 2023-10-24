@@ -22,3 +22,5 @@ class FruitRouter {
 }
 
 export default FruitRouter;
+
+// dependency injection

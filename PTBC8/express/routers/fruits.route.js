@@ -1,12 +1,12 @@
-import express from 'express';
+import { Router } from 'express';
 
-const fruitRouter = express.Router();
+const router = Router();
 
-fruitRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.send('GET route on fruits.');
 });
-fruitRouter.post('/', (req, res) => {
+router.post('/', (req, res) => {
   res.send('POST route on fruits.');
 });
 
-export default fruitRouter;
+export default router;
