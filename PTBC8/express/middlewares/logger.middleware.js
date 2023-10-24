@@ -5,3 +5,10 @@ const myLogger = (req, res, next) => {
 };
 
 export default myLogger;
+
+/**
+ *
+ *
+ * GET - localhost:3000 -> middleware -> actual handle of the route
+ *
+ */

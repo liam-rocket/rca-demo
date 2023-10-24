@@ -15,4 +15,16 @@ defaultRouter.get('/image/dog', async (req, res) => {
   res.status(200).json({ success: true, data: dogImageLink });
 });
 
+// http://localhost:3000/user/liam
+defaultRouter.get('/users/:name', (req, res) => {
+  const { name } = req.params;
+  res.status(200).json({ success: true, data: `This is ${name}` });
+});
+
+// http://localhost:3000/users?name=liam&location=hongkong
+defaultRouter.get('/users', (req, res) => {
+  const { name, location } = req.query;
+  res.status(200).json({ success: true, data: `${name} is in ${location}` });
+});
+
 export default defaultRouter;
