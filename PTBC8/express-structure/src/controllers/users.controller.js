@@ -1,3 +1,5 @@
+import { TEXT } from 'sequelize';
+
 class UsersController {
   constructor() {
     this.users = ['Liam', 'Kai', 'Sam', 'Foong'];
@@ -15,9 +17,8 @@ class UsersController {
   };
 
   createUser = (req, res) => {
-    // const userToAdd = req.body.user;
-    console.log('userToAdd: ', req.body);
-    // this.users.push(userToAdd);
+    const userToAdd = req.body.user;
+    this.users.push(userToAdd);
     res.send({ success: true, data: this.users });
   };
 

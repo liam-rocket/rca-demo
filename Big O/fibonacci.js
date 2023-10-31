@@ -1,4 +1,4 @@
-// find the x number of a fibonacci spiral
+// find the x number of a fibonacci sequence
 
 const spril = [1, 1, 2, 3, 5, 8];
 
