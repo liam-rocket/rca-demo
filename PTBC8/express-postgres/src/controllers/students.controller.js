@@ -51,23 +51,18 @@ class StudentController {
   };
 
   edit = (req, res) => {
-    const { firstName, mobile } = req.body;
+    const data = req.body;
     const { id } = req.params;
 
-    const dataToUpdateMapping = {
-      first_name: firstName,
-      mobile,
-    };
-
-    const dataToUpdateStr = Object.entries(dataToUpdateMapping)
+    const dataToUpdateStr = Object.entries(data)
       .map(([key], index) => `${key} = $${index + 1}`)
       .join(', ');
 
-    const inputData = [firstName, mobile, id];
+    const inputData = Object.entries(data).map(([, val]) => val);
 
     const updateQuery = `UPDATE students SET ${dataToUpdateStr} WHERE id = $${id}`;
 
-    this.pool.query(updateQuery, inputData, (error, result) => {
+    this.pool.query(updateQuery, [...inputData, id], (error, result) => {
       if (error) {
         console.log(error);
         res.status(501).send('error!');
