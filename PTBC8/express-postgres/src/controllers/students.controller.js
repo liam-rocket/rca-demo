@@ -7,7 +7,9 @@ class StudentController {
   }
 
   list = (req, res) => {
-    const listStudentsQUery = 'SELECT * FROM students';
+    const { id } = req.params;
+
+    const listStudentsQUery = `SELECT * FROM students WHERE id = ${id}`;
 
     this.pool.query(listStudentsQUery, (error, result) => {
       if (error) {
@@ -25,8 +27,9 @@ class StudentController {
   add = (req, res) => {
     const { firstName, lastName, mobile, gender } = req.body;
 
-    // we want to avoid this, because it's not sequre
-    // const sqlQuery = "INSERT INTO students (first_name, last_name, mobile, gender) VALUES ('Eric', 'Marsh', 874480753, true)"
+    // we want to avoid this, because it's not sequre                                         Jane          Doe         123123        ture
+    // const sqlQuery = `INSERT INTO students (first_name, last_name, mobile, gender) VALUES (${firstName}, ${lastName}, ${mobile}, ${gender})`;
+    // const sqlQuery = `INSERT INTO students (first_name, last_name, mobile, gender) VALUES (Jane, Doe, 123456, true)`;
 
     const inputData = [firstName, lastName, mobile, gender];
 
@@ -57,7 +60,7 @@ class StudentController {
     };
 
     const dataToUpdateStr = Object.entries(dataToUpdateMapping)
-      .map(([key]) => `${key} = $${key}`)
+      .map(([key], index) => `${key} = $${index + 1}`)
       .join(', ');
 
     const inputData = [firstName, mobile, id];
@@ -74,7 +77,7 @@ class StudentController {
       console.log(result.rows);
       res
         .status(200)
-        .json({ success: true, message: 'successfully added new student' });
+        .json({ success: true, message: 'successfully edited student' });
     });
   };
 

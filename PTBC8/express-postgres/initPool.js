@@ -1,6 +1,7 @@
 import pg from 'pg';
 
 const { Pool } = pg;
+
 const pgConnectionConfigs = {
   user: 'yickkiuliamleung',
   host: 'localhost',
