@@ -10,7 +10,7 @@ console.log(`🚀 App listening on the port ${port}`);
 
 app.post('/signup', (request, response) => {
   // use a function to generate the hashedPassword
-  const hashedPassword = getHash(request.body.password);
+  const hashedPassword = getHashedString(request.body.password);
 
   // store the hashed password in our DB
   const values = [request.body.email, hashedPassword];

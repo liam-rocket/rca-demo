@@ -58,9 +58,11 @@ class StudentController {
       .map(([key], index) => `${key} = $${index + 1}`)
       .join(', ');
 
+    const updateQuery = `UPDATE students SET ${dataToUpdateStr} WHERE id = $${id}`;
+
     const inputData = Object.entries(data).map(([, val]) => val);
 
-    const updateQuery = `UPDATE students SET ${dataToUpdateStr} WHERE id = $${id}`;
+    console.log('updateQuery: ', updateQuery);
 
     this.pool.query(updateQuery, [...inputData, id], (error, result) => {
       if (error) {
