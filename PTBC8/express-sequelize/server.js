@@ -1,10 +1,9 @@
-/* eslint-disable import/extensions */
-import './environment.js';
-import express from 'express';
-import cors from 'cors';
+require('./environment');
+const express = require('express');
+const cors = require('cors');
 
-import loggerMiddleware from './src/middlewares/logger.middleware.js';
-import FruitRouter from './src/routers/students.route.js';
+const loggerMiddleware = require('./src/middlewares/logger.middleware');
+const FruitRouter = require('./src/routers/students.route');
 
 const app = express();
 app.use(loggerMiddleware);

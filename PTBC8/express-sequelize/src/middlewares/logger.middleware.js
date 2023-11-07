@@ -4,7 +4,7 @@ const myLogger = (req, res, next) => {
   next();
 };
 
-export default myLogger;
+module.exports = myLogger;
 
 /**
  *
