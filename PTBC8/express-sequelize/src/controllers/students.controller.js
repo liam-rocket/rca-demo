@@ -3,38 +3,59 @@ class StudentController {
     this.db = db;
   }
 
-  list = async (req, res) => {};
-
-  get = async (req, res) => {};
-
-  add = async (req, res) => {};
-
-  edit = async (req, res) => {
-    const dataToUpdateStr = Object.entries(data)
-      .map(([key], index) => `${key} = $${index + 1}`)
-      .join(', ');
-
-    const updateQuery = `UPDATE students SET ${dataToUpdateStr} WHERE id = $${id}`;
-
-    const inputData = Object.entries(data).map(([, val]) => val);
-
-    console.log('updateQuery: ', updateQuery);
-
-    this.pool.query(updateQuery, [...inputData, id], (error, result) => {
-      if (error) {
-        console.log(error);
-        res.status(501).send('error!');
-        return;
-      }
-
-      console.log(result.rows);
-      res
-        .status(200)
-        .json({ success: true, message: 'successfully edited student' });
-    });
+  // list all the students in the database
+  list = async (req, res) => {
+    // const students = await this.db.students.findAll({ where: { ...your conditions can go here too }});
+    const students = await this.db.students.findAll(); // select * from students;
+    res.status(200).json(students);
   };
 
-  delete = async (req, res) => {};
+  get = async (req, res) => {
+    const { id } = req.params;
+    // const student = await this.db.students.findByPk(id) <-- this one takes in the primary key as param, and searches by PK
+    const student = await this.db.students.findOne({
+      where: { id },
+    });
+    res.status(200).json(student);
+  };
+
+  add = async (req, res) => {
+    const { firstName, lastName, mobile, gender } = req.body;
+
+    const studentToAdd = {
+      first_name: firstName,
+      last_name: lastName,
+      mobile,
+      gender,
+    };
+
+    const newStudent = await this.db.students.create(studentToAdd);
+    res.status(200).json(newStudent);
+  };
+
+  edit = async (req, res) => {
+    const newValues = req.body;
+    const { id } = req.params;
+
+    const [rowsUpdatedCount] = await this.db.students.update(
+      { ...newValues },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    res.status(200).json({ updated: rowsUpdatedCount });
+  };
+
+  delete = async (req, res) => {
+    const { id } = req.params;
+    const { ids } = req.body; // <- we can perform a bulk delete by passing in an array in the req.body. example { "ids": [6,8,9] }
+
+    const deleted = await this.db.students.destroy({ where: { id: ids } });
+    res.status(200).json({ deleted });
+  };
 }
 
 module.exports = StudentController;

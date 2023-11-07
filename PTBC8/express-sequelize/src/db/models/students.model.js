@@ -1,4 +1,5 @@
 const { Model } = require('sequelize');
+const studentAddressesModel = require('./studentAddresses.model');
 
 module.exports = (sequelize, DataTypes) => {
   class Student extends Model {
@@ -17,12 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       last_name: { type: DataTypes.STRING(255) },
       mobile: { type: DataTypes.STRING(255) },
       gender: { type: DataTypes.STRING(255) },
-      created_at: { type: DataTypes.DATE },
-      updated_at: { type: DataTypes.DATE },
     },
     {
       sequelize,
-      modelName: 'students',
+      modelName: 'students', // ! model name MUST match table name
       underscored: true,
     }
   );
