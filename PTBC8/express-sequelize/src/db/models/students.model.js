@@ -1,5 +1,4 @@
 const { Model } = require('sequelize');
-const studentAddressesModel = require('./studentAddresses.model');
 
 module.exports = (sequelize, DataTypes) => {
   class Student extends Model {

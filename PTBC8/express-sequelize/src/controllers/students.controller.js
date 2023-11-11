@@ -14,8 +14,21 @@ class StudentController {
     const { id } = req.params;
     // const student = await this.db.students.findByPk(id) <-- this one takes in the primary key as param, and searches by PK
     const student = await this.db.students.findOne({
-      where: { id },
+      where: { id }, // the student id
+      include: [
+        {
+          model: this.db.studentAddresses, // select * from students JOIN student_addresses WHERE students.id = student_addresses.student_id;
+          // where: {
+          //   student_id: 2,
+          // },
+        },
+      ],
     });
+
+    const studentAddressesRaw = await student.getStudentAddresses();
+    const studentAddressesJson = studentAddressesRaw.map((sa) => sa.toJSON());
+    console.log(studentAddressesJson);
+
     res.status(200).json(student);
   };
 
