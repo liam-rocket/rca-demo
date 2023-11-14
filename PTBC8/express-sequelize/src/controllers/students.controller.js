@@ -10,6 +10,20 @@ class StudentController {
     res.status(200).json(students);
   };
 
+  getStudentClasses = async (req, res) => {
+    const studentClasses = await this.db.students.findAll({
+      include: [
+        {
+          model: this.db.classes,
+          include: [{ model: this.db.teachers }],
+        },
+        { model: this.db.laptop },
+      ],
+    });
+
+    res.status(200).json(studentClasses);
+  };
+
   get = async (req, res) => {
     const { id } = req.params;
     // const student = await this.db.students.findByPk(id) <-- this one takes in the primary key as param, and searches by PK

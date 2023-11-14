@@ -15,6 +15,7 @@ class StudentRouter {
   }
 
   initializeRoutes = () => {
+    this.router.get(`${this.path}/classes`, this.controller.getStudentClasses);
     this.router.get(`${this.path}/:id`, this.controller.get);
     this.router.get(`${this.path}/`, this.controller.list);
     this.router.post(`${this.path}/`, this.controller.add);

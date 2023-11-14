@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
   class Student extends Model {
     static associate(models) {
       this.hasMany(models.studentAddresses);
+      this.belongsToMany(models.classes, {
+        through: models.studentClasses,
+        key: 'student_id',
+      });
     }
   }
   Student.init(
