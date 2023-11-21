@@ -11,17 +11,25 @@ class StudentController {
   };
 
   getStudentClasses = async (req, res) => {
-    const studentClasses = await this.db.students.findAll({
-      include: [
-        {
-          model: this.db.classes,
-          include: [{ model: this.db.teachers }],
-        },
-        { model: this.db.laptop },
-      ],
+    // const studentClasses = await this.db.students.findAll({
+    //   include: [
+    //     {
+    //       model: this.db.classes,
+    //       include: [{ model: this.db.teachers }],
+    //     },
+    //     { model: this.db.laptop },
+    //   ],
+    // });
+
+    const student = await this.db.students.findOne({
+      where: {
+        id: 1,
+      },
     });
 
-    res.status(200).json(studentClasses);
+    const studentWithClassResp = await student.addClass(3); // pass the class id to the function
+
+    res.status(200).json(studentWithClassResp);
   };
 
   get = async (req, res) => {
@@ -57,6 +65,7 @@ class StudentController {
     };
 
     const newStudent = await this.db.students.create(studentToAdd);
+
     res.status(200).json(newStudent);
   };
 
