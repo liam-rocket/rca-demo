@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FruitForm from './FruitForm';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,12 +15,7 @@ root.render(
     audience={process.env.REACT_APP_AUDIENCE}
     scope="read:current_user update:current_user_metadata"
   >
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/form" element={<FruitForm />} />
-      </Routes>
-    </BrowserRouter>
+    <App />
   </Auth0Provider>
 );
 
