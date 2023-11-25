@@ -2,8 +2,8 @@
 const { auth } = require('express-oauth2-jwt-bearer');
 
 const authMiddleware = auth({
-  audience: 'https://students/api',
-  issuerBaseURL: 'https://dev-kj25avk6bih6mjav.us.auth0.com/',
+  audience: process.env.AUTH0_AUDIENCE,
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
   tokenSigningAlg: 'RS256',
 });
 
