@@ -14,7 +14,7 @@ const authenticatedRoutes = [
 
 // redirect if not logged in
 function RequireAuth({ children }) {
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0(); // <- auth0 uses useContext
 
   const LogoutButton = () => {
     return <button onClick={() => logout()}>Log Out</button>;

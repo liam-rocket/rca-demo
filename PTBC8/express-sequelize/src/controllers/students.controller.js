@@ -10,26 +10,19 @@ class StudentController {
     res.status(200).json(students);
   };
 
+  // todo: Eagar Loading
   getStudentClasses = async (req, res) => {
-    // const studentClasses = await this.db.students.findAll({
-    //   include: [
-    //     {
-    //       model: this.db.classes,
-    //       include: [{ model: this.db.teachers }],
-    //     },
-    //     { model: this.db.laptop },
-    //   ],
-    // });
-
-    const student = await this.db.students.findOne({
-      where: {
-        id: 1,
-      },
+    const studentClasses = await this.db.students.findAll({
+      include: [
+        {
+          model: this.db.classes,
+          include: [{ model: this.db.teachers }],
+        },
+        { model: this.db.laptop },
+      ],
     });
 
-    const studentWithClassResp = await student.addClass(3); // pass the class id to the function
-
-    res.status(200).json(studentWithClassResp);
+    res.status(200).json(studentClasses);
   };
 
   get = async (req, res) => {
@@ -54,19 +47,25 @@ class StudentController {
     res.status(200).json(student);
   };
 
+  // * Added try - catch block
   add = async (req, res) => {
-    const { firstName, lastName, mobile, gender } = req.body;
+    try {
+      const { firstName, lastName, mobile, gender, email } = req.body;
 
-    const studentToAdd = {
-      first_name: firstName,
-      last_name: lastName,
-      mobile,
-      gender,
-    };
+      const studentToAdd = {
+        first_name: firstName,
+        last_name: lastName,
+        mobile,
+        gender,
+        email,
+      };
 
-    const newStudent = await this.db.students.create(studentToAdd);
+      const newStudent = await this.db.students.create(studentToAdd);
 
-    res.status(200).json(newStudent);
+      res.status(200).json(newStudent);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   };
 
   edit = async (req, res) => {

@@ -21,6 +21,7 @@
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "jsonwebtoken": "^9.0.2",
     "jssha": "^3.2.0",
     "moment": "^2.29.4",
     "multer": "^1.4.4",

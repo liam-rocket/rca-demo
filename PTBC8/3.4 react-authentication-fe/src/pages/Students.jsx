@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
+import Loading from './Loading';
 
 export default function Fruit() {
   let [students, setStudents] = useState([]);
 
-  const { getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     getStudents();
@@ -26,6 +27,7 @@ export default function Fruit() {
 
   return (
     <div style={{ marginTop: '20px' }}>
+      Welcome ! {user.nickname}
       <div
         style={{
           display: 'flex',
@@ -38,7 +40,7 @@ export default function Fruit() {
               <li>{`${student.first_name} ${student.last_name}`}</li>
             ))
           ) : (
-            <p>No data</p>
+            <Loading />
           )}
         </ul>
       </div>
